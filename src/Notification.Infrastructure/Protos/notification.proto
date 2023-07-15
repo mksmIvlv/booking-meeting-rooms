@@ -1,6 +1,6 @@
 ﻿syntax = "proto3";
 
-option csharp_namespace = "Notification.Application";
+option csharp_namespace = "Notification.Infrastructure";
 
 package notification;
 

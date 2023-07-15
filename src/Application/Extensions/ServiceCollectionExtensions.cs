@@ -2,6 +2,8 @@
 using Application.Interfaces;
 using Application.Mediatr.Pipelines;
 using Application.Services;
+using Application.Services.Kafka;
+using Application.Services.RabbitMq;
 using Contracts.Interface;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;

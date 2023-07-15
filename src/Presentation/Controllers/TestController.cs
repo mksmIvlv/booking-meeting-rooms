@@ -8,7 +8,6 @@ namespace Presentation.Controllers;
 [Route("api/[controller]/[action]")]
 public class TestController: ControllerBase
 {
-
     #region Поля
     
     
@@ -26,8 +25,8 @@ public class TestController: ControllerBase
 
     #region Api - методы
 
-    [HttpPost]
-    public async Task<IActionResult> TestMethod(string message)
+    [HttpGet]
+    public async Task<IActionResult> TestMethod()
     {
         return Ok("7c0a2d75-b56b-4473-9cc5-e76e9591cc6d");
     }

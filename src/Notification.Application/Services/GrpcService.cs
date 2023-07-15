@@ -1,5 +1,6 @@
 ﻿using Grpc.Core;
 using Notification.Application.Interfaces;
+using Notification.Infrastructure;
 
 namespace Notification.Application.Services;
 
@@ -40,7 +41,4 @@ public class GrpcService : PushMessageNotification.PushMessageNotificationBase
     }
 
     #endregion
-    
-    
-    
 }

@@ -11,6 +11,9 @@ public class ScheduleMeetingRoomController: ControllerBase
 {
     #region Поле
 
+    /// <summary>
+    /// Медиатор
+    /// </summary>
     private readonly IMediator _mediator;
 
     #endregion

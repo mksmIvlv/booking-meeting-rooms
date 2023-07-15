@@ -7,7 +7,11 @@ using Notification.Presentation.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 
 // Получение экземпляра класса
-var infrastructureSettings =  builder.Configuration.GetSection(nameof(NotificationInfrastructureSettings)).Get<NotificationInfrastructureSettings>();
+var infrastructureSettings =
+    builder.Configuration.GetSection(nameof(NotificationInfrastructureSettings)).Get<NotificationInfrastructureSettings>();
+
+// Получение сборки с консьюмерами
+var consumersAssembly = typeof(MessageNotificationService).Assembly;
 
 // Использование IOption<>
 builder.Services.Configure<NotificationInfrastructureSettings>
@@ -16,9 +20,10 @@ builder.Services.Configure<NotificationInfrastructureSettings>
     );
 
 builder.Services
-    .AddNotificationInfrastructure()
-    .AddNotificationPresentation(infrastructureSettings)
-    .AddNotificationApplication();
+    .AddNotificationApplication()
+    .AddNotificationInfrastructure(infrastructureSettings, consumersAssembly)
+    .AddNotificationPresentation();
+    
 
 var app = builder.Build();
 

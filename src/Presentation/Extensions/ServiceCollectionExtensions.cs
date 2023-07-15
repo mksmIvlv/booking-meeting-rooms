@@ -44,8 +44,9 @@ public static class ServiceCollectionExtensions
 
         // Проверка работоспособности
         services.AddHealthCheck();
+        
         // Метрики
-        services.AddMetrics(configuration);
+        services.AddMetric(configuration);
 
         return services;
     }
@@ -71,7 +72,7 @@ public static class ServiceCollectionExtensions
     /// <summary>
     /// Подключение метрик приложения
     /// </summary>
-    private static IServiceCollection AddMetrics(this IServiceCollection services, IConfiguration configuration)
+    private static IServiceCollection AddMetric(this IServiceCollection services, IConfiguration configuration)
     {
         // Prometheus
         services.AddOpenTelemetry()

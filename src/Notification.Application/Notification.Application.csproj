@@ -11,22 +11,4 @@
       <ProjectReference Include="..\Notification.Infrastructure\Notification.Infrastructure.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <PackageReference Include="Grpc.AspNetCore" Version="2.55.0" />
-      <PackageReference Include="MassTransit" Version="8.0.16" />
-      <PackageReference Include="MassTransit.Kafka" Version="8.0.16" />
-      <PackageReference Include="MassTransit.RabbitMQ" Version="8.0.16" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Protobuf Include="Protos\notification.proto">
-        <GrpcServices>Server</GrpcServices>
-        <Access>Public</Access>
-        <ProtoCompile>True</ProtoCompile>
-        <CompileOutputs>True</CompileOutputs>
-        <OutputDir>obj\Debug\net7.0\</OutputDir>
-        <Generator>MSBuild:Compile</Generator>
-      </Protobuf>
-    </ItemGroup>
-
 </Project>
