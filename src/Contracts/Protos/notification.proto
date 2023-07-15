@@ -1,0 +1,20 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Contracts";
+
+package notification;
+
+message Request {
+    string Id = 1;
+    sint64 IdChat = 2;
+    string Text = 3;
+}
+
+message Response { }
+
+service PushMessageNotification {
+    // определение метода Push, 
+    // который получает сообщение Request
+    // и отправляет сообщение Response
+    rpc Push (Request) returns (Response);
+}

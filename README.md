@@ -57,10 +57,10 @@
         7. Notification.Presentation:
             - реализован hostedService для прослушивания шины и отправки в telegram.
     Итерация 5.
-        1. Application:
-            - Реализована работа MassTransit.
+        1. Infrastructure:
+            - Реализована работа MassTransit с RabbitMq.
         2. Notification.Application:
-            - Реализована работа MassTransit.
+            - Реализована работа MassTransit с RabbitMq .
             - Отправка сообщений происходит в канал с администраторами и в личные сообщения.
     Итерация 6.
         1. Infrastructure:
@@ -76,5 +76,14 @@
             - Реализовано подключение к Kafka.
         4. Notification.Application:
             - Реализовано получение сообщений из шины Kafka и отправка в телеграм.
+    Итерация 7
+        1. Infrastructure:
+            - Реализована работа MassTransit с Kafka.
+            - Реализована работа с gRPC (клиент).
+        2. Application:
+            - Реализован сервис для отправки сообщений через gRPC.
+        2. Notification.Application:
+            - Реализована работа MassTransit с Kafka.
+            - Реализована работа с gRPC (сервер).
 
-    *Все доп сервисы подняты локально в докере, кроме Prometheus и Kafka(подключение к Confluent Cloud)
+    *Все доп сервисы подняты локально в докере, кроме Prometheus

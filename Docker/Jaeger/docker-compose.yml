@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+
+  jaeger:
+    container_name: "jaeger"
+    image: jaegertracing/all-in-one:latest
+    volumes:
+      - ./jaeger:/var/lib/jaeger
+    ports:
+      - "6831:6831/udp"
+      - "16686:16686"
+    networks:
+      - jaeger-example
+
+  hotrod:
+    container_name: "hotrod"
+    image: jaegertracing/example-hotrod:latest
+    volumes:
+      - ./hotrod:/var/lib/hotrod
+    ports: 
+      - "4317:4317"
+    command: ["all"]
+    environment:
+      - JAEGER_AGENT_HOST=jaeger
+      - JAEGER_AGENT_PORT=6831
+    networks:
+      - jaeger-example
+    depends_on:
+      - jaeger
+
+networks:
+  jaeger-example:
