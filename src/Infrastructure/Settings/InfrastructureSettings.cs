@@ -1,4 +1,5 @@
 ﻿using Infrastructure.Settings.Grpc;
+using Infrastructure.Settings.Http;
 using Infrastructure.Settings.Kafka;
 using Infrastructure.Settings.RabbitMQ;
 using Infrastructure.Settings.Redis;
@@ -36,9 +37,14 @@ public class InfrastructureSettings: IOptions<InfrastructureSettings>
     public KafkaSettings KafkaSettings { get; set; }
     
     /// <summary>
-    /// Настройки Grpc
+    /// Настройки gRPC
     /// </summary>
     public GrpcSettings GrpcSettings { get; set; }
+    
+    /// <summary>
+    /// Настройки Http
+    /// </summary>
+    public HttpSettings HttpSettings { get; set; }
 
     #endregion
 }
