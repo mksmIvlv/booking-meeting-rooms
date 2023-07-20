@@ -19,8 +19,11 @@ public static class ServiceCollectionExtensions
         
         // Получение сообщений с помощью Kafka
         //services.AddScoped<IConsumerBus, KafkaService>();
+
+        // Получение сообщений с помощью Http
+        services.AddScoped<HttpService>();
         
-        // Отправка уведомлений в телеграм конкретным пользователям
+        // Отправка уведомлений в телеграм
         services.AddScoped<INotification, NotificationTelegramService>();
 
         return services;

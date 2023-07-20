@@ -46,7 +46,7 @@ public static class ServiceCollectionExtensions
         //services.AddMassTransitKafka(settings);
         
         // Подключение gRPC
-        services.AddScoped<IConnectionGrpc, ConnectionGrpc>();
+        //services.AddScoped<IConnectionGrpc, ConnectionGrpc>();
 
         // Подключение Redis
         services.AddScoped<IConnectionRedis, ConnectionRedis>();

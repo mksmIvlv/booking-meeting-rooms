@@ -1,14 +1,14 @@
-﻿namespace Infrastructure.Settings.Grpc;
+﻿namespace Infrastructure.Settings.Http;
 
 /// <summary>
-/// Настройки gRPC
+/// Настройки Http
 /// </summary>
-public class GrpcSettings
+public class HttpSettings
 {
     #region Свойства
 
     /// <summary>
-    /// Адрес сервера
+    /// Адрес контроллера
     /// </summary>
     public string Address { get; set; }
 

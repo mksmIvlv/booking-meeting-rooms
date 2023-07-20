@@ -35,7 +35,7 @@ public static class ServiceCollectionExtensions
         //services.AddMassTransitKafka(settings, consumers);
         
         // Работа с помощью gRPC
-        services.AddGrpc();
+        //services.AddGrpc();
 
         // Подключение Telegram
         services.AddScoped<IConnectionTelegram, ConnectionTelegram>();
