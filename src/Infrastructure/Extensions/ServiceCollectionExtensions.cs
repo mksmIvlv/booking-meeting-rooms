@@ -7,6 +7,8 @@ using Infrastructure.Settings;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Polly;
+using Polly.Extensions.Http;
 
 namespace Infrastructure.Extensions;
 
@@ -47,6 +49,10 @@ public static class ServiceCollectionExtensions
         
         // Подключение gRPC
         //services.AddScoped<IConnectionGrpc, ConnectionGrpc>();
+        
+        // Подключение Http c политиками от Microsoft Polly
+        /*services.AddHttpClient("HttpService")
+            .AddPolicyHandler(GetRetryPolicy());*/
 
         // Подключение Redis
         services.AddScoped<IConnectionRedis, ConnectionRedis>();
@@ -109,5 +115,16 @@ public static class ServiceCollectionExtensions
             });
         });
         return services;
+    }
+    
+    /// <summary>
+    /// Подключение политик
+    /// </summary>
+    /// <returns>Расширение для политик</returns>
+    private static IAsyncPolicy<HttpResponseMessage> GetRetryPolicy()
+    {
+        return HttpPolicyExtensions
+                .HandleTransientHttpError()
+                .WaitAndRetryAsync(5, retryAttempt => TimeSpan.FromSeconds(3));
     }
 }

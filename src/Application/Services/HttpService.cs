@@ -31,9 +31,9 @@ public class HttpService<T>: IPublishBusService<T> where T: IMessage
 
     #region Конструктор
 
-    public HttpService(IOptions<InfrastructureSettings> settings)
+    public HttpService(HttpClient httpClient, IOptions<InfrastructureSettings> settings)
     {
-        _httpClient = new HttpClient();
+        _httpClient = httpClient;
         _settings = settings.Value.HttpSettings;
     }
 
@@ -41,8 +41,8 @@ public class HttpService<T>: IPublishBusService<T> where T: IMessage
 
     #region Метод
 
-    /// <summary>
-    /// Отправка сообщений
+    /*/// <summary>
+    /// Отправка сообщений с политиками от Polly
     /// </summary>
     /// <param name="classMessage">Класс - сообщение</param>
     public async Task SendMessageAsync(T classMessage)
@@ -52,7 +52,7 @@ public class HttpService<T>: IPublishBusService<T> where T: IMessage
             /*.RetryAsync(5, (exception, retryCount) =>
             {
                 Log.Fatal($"Сообщение не отправленно. Ошибка {exception}, попытка: {retryCount}.");
-            })*/
+            })#1#
             .WaitAndRetryAsync(new[]
             {
                 TimeSpan.FromSeconds(1),
@@ -63,6 +63,15 @@ public class HttpService<T>: IPublishBusService<T> where T: IMessage
                 Log.Fatal($"Сообщение не отправленно. Ошибка: {exception}, время ожидания: {timeSpan}.");
             })
             .ExecuteAsync(async () => await _httpClient.PostAsJsonAsync(_settings.Address, classMessage));
+    }*/
+    
+    /// <summary>
+    /// Отправка сообщений с политиками от Microsoft Polly
+    /// </summary>
+    /// <param name="classMessage">Класс - сообщение</param>
+    public async Task SendMessageAsync(T classMessage)
+    {
+        await _httpClient.PostAsJsonAsync(_settings.Address, classMessage);
     }
 
     #endregion
