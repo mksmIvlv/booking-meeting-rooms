@@ -7,6 +7,8 @@ using Application.Services.RabbitMq;
 using Contracts.Interface;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using Polly;
+
 
 namespace Application.Extensions;
 

@@ -79,7 +79,6 @@ public static class ServiceCollectionExtensions
             .WithMetrics(builder => builder
                 .AddAspNetCoreInstrumentation()
                 .AddHttpClientInstrumentation()
-                .AddConsoleExporter()
                 .AddRuntimeInstrumentation()
                 .AddPrometheusExporter())
             // Jaeger
@@ -87,7 +86,6 @@ public static class ServiceCollectionExtensions
                 .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(configuration["Application:ServiceName"]))
                 .AddAspNetCoreInstrumentation()
                 .AddHttpClientInstrumentation()
-                .AddConsoleExporter()
                 .AddJaegerExporter()
                 .AddOtlpExporter(options =>
                 {
