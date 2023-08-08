@@ -41,9 +41,9 @@ public class Repository : IRepository
     {
         var meetingRoom = await _context.Set<MeetingRoom>()
                               .Include(e => e.BookingMeetingRooms)
-                              .FirstOrDefaultAsync(e => e.IdRoom == id)
+                              .FirstOrDefaultAsync(e => e.Id == id)
                           ?? throw new Exception("комнаты с таким Id нет.");
-        
+
         var bookingMeetingRoom = meetingRoom.BookingRoom(dateMeeting, startTimeMeeting, endTimeMeeting);
 
         return bookingMeetingRoom;
@@ -60,7 +60,7 @@ public class Repository : IRepository
                               .Include(e => e.BookingMeetingRooms
                                   .OrderBy(e => e.DateMeeting)
                                   .ThenBy(e => e.StartTimeMeeting))
-                              .FirstOrDefaultAsync(e => e.IdRoom == id)
+                              .FirstOrDefaultAsync(e => e.Id == id)
                           ?? throw new Exception("комнаты с таким Id нет.");
 
         return meetingRoom;

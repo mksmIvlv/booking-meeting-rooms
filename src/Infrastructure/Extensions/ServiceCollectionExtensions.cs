@@ -23,7 +23,13 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, InfrastructureSettings settings)
     {
         // База данных
-        services.AddDbContext<Context>(options => options.UseNpgsql(settings.ConnectionStringDb));
+        services.AddDbContext<Context>(options =>
+        {
+            options.UseNpgsql(settings.ConnectionStringDb, npgSqlOptions =>
+            {
+                npgSqlOptions.MigrationsAssembly(typeof(Context).Assembly.GetName().Name);
+            });
+        });
         services.AddScoped<DbContext, Context>();
         services.AddScoped<IRepository, Repository>();
         

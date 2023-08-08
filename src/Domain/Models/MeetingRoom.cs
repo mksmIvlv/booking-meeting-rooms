@@ -10,33 +10,39 @@ public class MeetingRoom
     /// <summary>
     /// Id комнаты
     /// </summary>
-    public Guid IdRoom { get; }
+    public Guid Id { get; }
     
     /// <summary>
     /// Название комнаты
     /// </summary>
-    public string NameRoom { get; }
+    public string Name { get; }
     
     /// <summary>
     /// Описание комнаты
     /// </summary>
-    public string? DescriptionRoom { get; private set; }
-    
+    public string? Description { get; private set; }
+
     /// <summary>
     /// Расписание комнаты (все брони)
     /// </summary>
-    public List<BookingMeetingRoom> BookingMeetingRooms { get; private set; }
+    public List<BookingMeetingRoom> BookingMeetingRooms { get; private set; } = new();
+
+    /// <summary>
+    /// Связь с промежуточной таблицей
+    /// </summary>
+    public List<ItemInMeetingRoom> ItemsInMeetingRooms { get; private set; } = new();
 
     #endregion
 
     #region Конструктор
+    
+    private MeetingRoom() { }
 
-    public MeetingRoom(string nameRoom, string? descriptionRoom)
+    public MeetingRoom(string name, string? description)
     {
-        IdRoom = Guid.NewGuid();
-        NameRoom = nameRoom;
-        DescriptionRoom = descriptionRoom;
-        BookingMeetingRooms = new List<BookingMeetingRoom>();
+        Id = Guid.NewGuid();
+        Name = name;
+        Description = description;
     }
 
     #endregion
@@ -68,7 +74,7 @@ public class MeetingRoom
             // Если комнат нет, сразу добавляем
             if (BookingMeetingRooms.Count == 0)
             {
-                var returnBookingMeetingRoom = new BookingMeetingRoom(dateMeeting, startTimeMeeting, endTimeMeeting, IdRoom);
+                var returnBookingMeetingRoom = new BookingMeetingRoom(dateMeeting, startTimeMeeting, endTimeMeeting, Id);
                 BookingMeetingRooms.Add(returnBookingMeetingRoom);
 
                 return returnBookingMeetingRoom;
@@ -95,7 +101,7 @@ public class MeetingRoom
                     middleBorderBookingMeetingRoom == null &&
                     rightBorderBookingMeetingRoom == null)
                 {
-                    var returnBookingMeetingRoom = new BookingMeetingRoom(dateMeeting, startTimeMeeting, endTimeMeeting, IdRoom);
+                    var returnBookingMeetingRoom = new BookingMeetingRoom(dateMeeting, startTimeMeeting, endTimeMeeting, Id);
                     BookingMeetingRooms.Add(returnBookingMeetingRoom);
 
                     return returnBookingMeetingRoom;
@@ -129,6 +135,25 @@ public class MeetingRoom
         {
             BookingMeetingRooms.Remove(item);
         }
+    }
+
+    /// <summary>
+    /// Добавление предметов в комнату
+    /// </summary>
+    /// <param name="item">Предмет</param>
+    public void AddItem(Item item, decimal? itemPrice)
+    {
+        ItemsInMeetingRooms.Add(new ItemInMeetingRoom(item, itemPrice));
+    }
+
+    /// <summary>
+    /// Удаление связи с предметом
+    /// </summary>
+    /// <param name="item">Предмет</param>
+    public void RemoveItem(Guid idItem)
+    {
+        var itemsInMeetingRooms = ItemsInMeetingRooms.FirstOrDefault(q => q.IdItem == idItem);
+        ItemsInMeetingRooms.Remove(itemsInMeetingRooms);
     }
     
     #endregion

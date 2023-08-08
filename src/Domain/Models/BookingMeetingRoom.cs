@@ -10,7 +10,7 @@ public class BookingMeetingRoom
     /// <summary>
     /// Id бронирования
     /// </summary>
-    public Guid IdBooking { get; }
+    public Guid Id { get; }
 
     /// <summary>
     /// Дата бронирования
@@ -35,7 +35,7 @@ public class BookingMeetingRoom
     /// <summary>
     /// Id комнаты
     /// </summary>
-    public Guid MeetingRoomId { get; private set; }
+    public Guid IdMeetingRoom { get; private set; }
 
     #endregion
 
@@ -43,14 +43,14 @@ public class BookingMeetingRoom
     
     private BookingMeetingRoom() { }
 
-    public BookingMeetingRoom(DateOnly dateMeeting, TimeOnly startTimeMeeting, TimeOnly endTimeMeeting, Guid meetingRoomId)
+    public BookingMeetingRoom(DateOnly dateMeeting, TimeOnly startTimeMeeting, TimeOnly endTimeMeeting, Guid idMeetingRoom)
     {
-        IdBooking = Guid.NewGuid();
+        Id = Guid.NewGuid();
         DateMeeting = dateMeeting;
         StartTimeMeeting = startTimeMeeting;
         EndTimeMeeting = endTimeMeeting;
         IsNotification = false;
-        MeetingRoomId = meetingRoomId;
+        IdMeetingRoom = idMeetingRoom;
     }
 
     #endregion

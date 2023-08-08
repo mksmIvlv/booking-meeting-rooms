@@ -22,6 +22,6 @@ public class BookingMeetingRoomProfileMapping: Profile
             .ForMember(dto => dto.EndTimeMeeting, 
                 m => m.MapFrom(e => e.EndTimeMeeting))
             .ForMember(dto => dto.MeetingRoomDtoId, 
-                m => m.MapFrom(e => e.MeetingRoomId));
+                m => m.MapFrom(e => e.IdMeetingRoom));
     }
 }

@@ -19,6 +19,11 @@ public class Context : DbContext
     /// Доступ к бронированию комнат
     /// </summary>
     public DbSet<BookingMeetingRoom> BookingMeetingRooms { get; set; }
+    
+    /// <summary>
+    /// Доступ к предметам
+    /// </summary>
+    public DbSet<Item> Items { get; set; }
 
     #endregion
     
@@ -56,7 +61,7 @@ public class Context : DbContext
             new DateOnly(2023, 10, 25), 
             new TimeOnly(10, 00),
             new TimeOnly(11, 00), 
-            meetingRoom1.IdRoom
+            meetingRoom1.Id
         );
 
         var meetingRoom2 = new MeetingRoom

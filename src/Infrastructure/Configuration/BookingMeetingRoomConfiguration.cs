@@ -16,9 +16,10 @@ public class BookingMeetingRoomConfiguration : IEntityTypeConfiguration<BookingM
     /// </summary>
     public void Configure(EntityTypeBuilder<BookingMeetingRoom> builder)
     {
-        builder.HasKey(q => q.IdBooking);
-        builder.Property(q => q.IdBooking)
-            .ValueGeneratedNever();
+        builder.HasKey(q => q.Id);
+        builder.Property(q => q.Id)
+            .ValueGeneratedNever()
+            .IsRequired();
         
         builder.Property(q => q.DateMeeting)
             .IsRequired();
@@ -28,7 +29,7 @@ public class BookingMeetingRoomConfiguration : IEntityTypeConfiguration<BookingM
             .IsRequired();
         builder.Property(q => q.IsNotification)
             .IsRequired();
-        builder.Property(q => q.MeetingRoomId)
+        builder.Property(q => q.IdMeetingRoom)
             .IsRequired();
     }
 
