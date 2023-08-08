@@ -62,7 +62,7 @@ public class PostReminderNotificationHandler: ICommandHandler<PostReminderNotifi
             (
                 465309919,
                 "Оповещение - напоминание о бронировании.\n" +
-                $"Id комнаты: {collectionBooking[i].MeetingRoomId}.\n" +
+                $"Id комнаты: {collectionBooking[i].IdMeetingRoom}.\n" +
                 $"Дата: {collectionBooking[i].DateMeeting}.\n" +
                 $"Время: {collectionBooking[i].StartTimeMeeting} - {collectionBooking[i].EndTimeMeeting}."
             );

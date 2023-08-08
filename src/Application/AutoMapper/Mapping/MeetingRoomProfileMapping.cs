@@ -16,11 +16,11 @@ public class MeetingRoomProfileMapping: Profile
     {
         CreateMap<MeetingRoom, MeetingRoomDto>()
             .ForMember(dto => dto.Id, 
-                m => m.MapFrom(e => e.IdRoom))
+                m => m.MapFrom(e => e.Id))
             .ForMember(dto => dto.Name, 
-                m => m.MapFrom(e => e.NameRoom))
+                m => m.MapFrom(e => e.Name))
             .ForMember(dto => dto.Description, 
-                m => m.MapFrom(e => e.DescriptionRoom))
+                m => m.MapFrom(e => e.Description))
             .ForMember(dto => dto.BookingMeetingRoomsDto, 
                 m => m.MapFrom(e => e.BookingMeetingRooms));
     }
