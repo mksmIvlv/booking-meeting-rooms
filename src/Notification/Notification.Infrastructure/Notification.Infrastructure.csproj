@@ -18,10 +18,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Contracts\Contracts.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
       <Protobuf Include="Protos\notification.proto">
         <GrpcServices>Server</GrpcServices>
         <Access>Public</Access>
@@ -30,6 +26,10 @@
         <OutputDir>obj\Debug\net7.0\</OutputDir>
         <Generator>MSBuild:Compile</Generator>
       </Protobuf>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Contracts\Contracts.csproj" />
     </ItemGroup>
 
 </Project>

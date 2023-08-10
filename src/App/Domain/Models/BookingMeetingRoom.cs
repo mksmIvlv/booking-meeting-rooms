@@ -1,9 +1,11 @@
-﻿namespace Domain.Models;
+﻿using Domain.Models.Base;
+
+namespace Domain.Models;
 
 /// <summary>
 /// Бронирование комнаты
 /// </summary>
-public class BookingMeetingRoom
+public class BookingMeetingRoom : ModelBase<BookingMeetingRoom>
 {
     #region Свойства
 
@@ -65,5 +67,43 @@ public class BookingMeetingRoom
         IsNotification = true;
     }
 
+    #endregion
+    
+    #region Protected методы
+    
+    /// <summary>
+    /// Сравнение компонентов
+    /// </summary>
+    /// <param name="other">С каким объектом сравнивается</param>
+    /// <returns>True - объекты одинаковые, false - разные</returns>
+    protected override bool ComponentsEquals(BookingMeetingRoom other)
+    {
+        if (Id == other.Id) return true;
+        
+        return false;
+    }
+
+    /// <summary>
+    /// Получение hashCode компонентов
+    /// </summary>
+    /// <returns>Число</returns>
+    protected override int? ComponentsHashCode()
+    {
+        var hash = 0;
+        var id = Id.ToString();
+
+        for (int i = 0; i < id.Length ; i++)
+        {
+            if (id[i] == '-')
+            {
+                continue;
+            }
+
+            hash += (int)id[i];
+        }
+
+        return hash;
+    }
+    
     #endregion
 }
