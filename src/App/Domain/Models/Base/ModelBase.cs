@@ -1,10 +1,6 @@
-﻿namespace Domain.ValueObjects;
+﻿namespace Domain.Models.Base;
 
-/// <summary>
-/// Базовый класс для valueObject
-/// </summary>
-/// <typeparam name="T">Тип параметризации</typeparam>
-public abstract class ValueObjectBase<T>
+public abstract class ModelBase<T>
 {
     #region Методы, должны имплементировать наследники
 
@@ -31,7 +27,7 @@ public abstract class ValueObjectBase<T>
     /// <param name="left">Левый параметр</param>
     /// <param name="right">Правый параметр</param>
     /// <returns>True - равны</returns>
-    public static bool operator ==(ValueObjectBase<T> left, ValueObjectBase<T> right)
+    public static bool operator ==(ModelBase<T> left, ModelBase<T> right)
     {
         return Equals(left, right);
     }
@@ -42,7 +38,7 @@ public abstract class ValueObjectBase<T>
     /// <param name="left">Левый параметр</param>
     /// <param name="right">Правый параметр</param>
     /// <returns>True - не равны</returns>
-    public static bool operator !=(ValueObjectBase<T> left, ValueObjectBase<T> right)
+    public static bool operator !=(ModelBase<T> left, ModelBase<T> right)
     {
         return !Equals(left, right);
     }

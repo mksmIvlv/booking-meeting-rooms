@@ -1,9 +1,11 @@
-﻿namespace Domain.Models;
+﻿using Domain.Models.Base;
+
+namespace Domain.Models;
 
 /// <summary>
 /// Комната
 /// </summary>
-public class MeetingRoom
+public class MeetingRoom : ModelBase<MeetingRoom>
 {
     #region Свойства
 
@@ -154,6 +156,44 @@ public class MeetingRoom
     {
         var itemsInMeetingRooms = ItemsInMeetingRooms.FirstOrDefault(q => q.IdItem == idItem);
         ItemsInMeetingRooms.Remove(itemsInMeetingRooms);
+    }
+    
+    #endregion
+
+    #region Protected методы
+    
+    /// <summary>
+    /// Сравнение компонентов
+    /// </summary>
+    /// <param name="other">С каким объектом сравнивается</param>
+    /// <returns>True - объекты одинаковые, false - разные</returns>
+    protected override bool ComponentsEquals(MeetingRoom other)
+    {
+        if (Id == other.Id) return true;
+        
+        return false;
+    }
+
+    /// <summary>
+    /// Получение hashCode компонентов
+    /// </summary>
+    /// <returns>Число</returns>
+    protected override int? ComponentsHashCode()
+    {
+        var hash = 0;
+        var id = Id.ToString();
+
+        for (int i = 0; i < id.Length ; i++)
+        {
+            if (id[i] == '-')
+            {
+                continue;
+            }
+
+            hash += (int)id[i];
+        }
+
+        return hash;
     }
     
     #endregion

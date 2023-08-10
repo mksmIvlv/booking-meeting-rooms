@@ -1,22 +1,22 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Presentation\Presentation.csproj", "{6E354AAB-BFF4-41CD-A1EF-2C46A12C08A6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "App\Presentation\Presentation.csproj", "{6E354AAB-BFF4-41CD-A1EF-2C46A12C08A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{C40C3245-565F-4DDD-BEE2-30887640DD8D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "App\Domain\Domain.csproj", "{C40C3245-565F-4DDD-BEE2-30887640DD8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{220911F8-5838-4597-AC74-88A273B186CD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "App\Infrastructure\Infrastructure.csproj", "{220911F8-5838-4597-AC74-88A273B186CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{1999B804-C03A-49E0-918B-B6614003579D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "App\Application\Application.csproj", "{1999B804-C03A-49E0-918B-B6614003579D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{C74F8E00-2159-41B4-86AD-672CAF1A87CD}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App", "App", "{C74F8E00-2159-41B4-86AD-672CAF1A87CD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notification", "Notification", "{420ABBBE-1C3D-4D8F-A2F0-9C16964675E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notification.Infrastructure", "Notification.Infrastructure\Notification.Infrastructure.csproj", "{487B2A67-D7D7-4658-8D62-B0FA425C4F61}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notification.Infrastructure", "Notification\Notification.Infrastructure\Notification.Infrastructure.csproj", "{487B2A67-D7D7-4658-8D62-B0FA425C4F61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notification.Presentation", "Notification.Presentation\Notification.Presentation.csproj", "{DF02B092-8B10-4603-9328-F414C0E67367}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notification.Presentation", "Notification\Notification.Presentation\Notification.Presentation.csproj", "{DF02B092-8B10-4603-9328-F414C0E67367}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notification.Application", "Notification.Application\Notification.Application.csproj", "{C1F719BB-B4E2-4829-B049-80EC038D612C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notification.Application", "Notification\Notification.Application\Notification.Application.csproj", "{C1F719BB-B4E2-4829-B049-80EC038D612C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contracts", "Contracts", "{45288E63-0762-45F9-836D-700EB259822C}"
 EndProject

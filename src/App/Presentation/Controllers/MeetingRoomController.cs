@@ -7,7 +7,7 @@ namespace Presentation.Controllers;
 
 [ApiController]
 [Route("api/[controller]/[action]")]
-public class MeetingRoomController: ControllerBase
+public class MeetingRoomController : ControllerBase
 {
     #region Поле
 
