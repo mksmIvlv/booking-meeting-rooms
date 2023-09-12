@@ -1,5 +1,5 @@
 ﻿using Confluent.Kafka;
-using Contracts.Models;
+using Contracts.Model;
 using Newtonsoft.Json;
 using Notification.Application.Interfaces;
 using Notification.Infrastructure.Interfaces.Connections;

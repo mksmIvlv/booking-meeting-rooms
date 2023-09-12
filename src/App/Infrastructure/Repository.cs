@@ -71,11 +71,10 @@ public class Repository : IRepository
     /// </summary>
     /// <param name="currentDateOnly">Текущая дата</param>
     /// <param name="currentTimeOnly">Текущее время</param>
-    /// <returns>Коллекция комнат, которую разбронировали</returns>
     public async Task UnbookingMeetingRoomAsync(DateOnly currentDateOnly, TimeOnly currentTimeOnly)
     {
         var meetingRooms = await _context.Set<MeetingRoom>()
-            .Include(e => e.BookingMeetingRooms)
+            .Include(e => e.BookingMeetingRooms.Where(e => e.DateMeeting <= currentDateOnly))
             .ToListAsync();
 
         foreach (var item in meetingRooms)
@@ -86,7 +85,7 @@ public class Repository : IRepository
     }
 
     /// <summary>
-    /// Получение комнат для отправки оповещения о разбронировании
+    /// Получение бронирований для отправки оповещения о разбронировании
     /// </summary>
     /// <param name="currentDateOnly">Текущая дата</param>
     /// <param name="currentTimeOnly">Текущее время</param>

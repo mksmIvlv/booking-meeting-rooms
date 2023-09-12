@@ -1,4 +1,4 @@
-﻿using Contracts.Models;
+﻿using Contracts.Model;
 using MassTransit;
 using Notification.Application.Interfaces;
 

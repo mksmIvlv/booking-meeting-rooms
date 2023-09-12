@@ -2,7 +2,7 @@
 using Application.Mediatr.Features.Models;
 using Application.Mediatr.Interfaces.Commands;
 using Contracts.Interface;
-using Contracts.Models;
+using Contracts.Model;
 using Domain.Interfaces.Infrastructure;
 using MediatR;
 

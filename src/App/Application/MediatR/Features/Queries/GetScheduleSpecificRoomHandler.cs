@@ -9,7 +9,7 @@ namespace Application.Mediatr.Features.Queries;
 /// <summary>
 /// Обработчик получения расписания
 /// </summary>
-public class GetScheduleSpecificRoomHandler : IQueryHandler<GetScheduleSpecificRoomQueries, MeetingRoomDto>
+public class GetScheduleSpecificRoomHandler : IQueryHandler<GetScheduleSpecificRoomQuery, MeetingRoomDto>
 {
     #region Поля
 
@@ -40,12 +40,12 @@ public class GetScheduleSpecificRoomHandler : IQueryHandler<GetScheduleSpecificR
     /// <summary>
     /// Получение расписания
     /// </summary>
-    /// <param name="queries">Запрос</param>
+    /// <param name="query">Запрос</param>
     /// <param name="cancellationToken">Токен</param>
     /// <returns>Информация о комнате</returns>
-    public async Task<MeetingRoomDto> Handle(GetScheduleSpecificRoomQueries queries, CancellationToken cancellationToken)
+    public async Task<MeetingRoomDto> Handle(GetScheduleSpecificRoomQuery query, CancellationToken cancellationToken)
     {
-        var meetingRoom = await _repository.GetScheduleAsync(queries.IdRoom);
+        var meetingRoom = await _repository.GetScheduleAsync(query.IdRoom);
             
         return _mapper.Map<MeetingRoomDto>(meetingRoom);
     }

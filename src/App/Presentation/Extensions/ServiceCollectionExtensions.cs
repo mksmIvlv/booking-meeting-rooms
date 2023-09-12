@@ -92,7 +92,7 @@ public static class ServiceCollectionExtensions
                     options.Endpoint = new Uri(configuration["Application:JaegerEndpoint"]);
                 }));
 
-        var enviromnent = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIROMNET");
+        var enviromnent = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
         
         // Elasticsearch
         Log.Logger = new LoggerConfiguration()

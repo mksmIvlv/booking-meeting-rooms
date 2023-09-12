@@ -3,6 +3,7 @@ using Application.Mediatr.Features.Models;
 using Application.Mediatr.Interfaces.Commands;
 using Application.Models.Dto;
 using AutoMapper;
+using Domain.Interfaces.Infrastructure;
 
 namespace Application.Mediatr.Features.Commands;
 
@@ -14,9 +15,9 @@ public class PostBookingMeetingRoomHandler: ICommandHandler<PostBookingMeetingRo
     #region Поля
 
     /// <summary>
-    /// Сервис для работы с комнатами
+    /// Доступ к репозиторию
     /// </summary>
-    private readonly IRoomService _roomService;
+    private readonly IRepository _repository;
 
     /// <summary>
     /// Маппинг моделей
@@ -27,9 +28,9 @@ public class PostBookingMeetingRoomHandler: ICommandHandler<PostBookingMeetingRo
     
     #region Конструктор
 
-    public PostBookingMeetingRoomHandler(IRoomService roomService, IMapper mapper)
+    public PostBookingMeetingRoomHandler(IRepository repository, IMapper mapper)
     {
-        _roomService = roomService;
+        _repository = repository;
         _mapper = mapper;
     }
 
@@ -52,7 +53,13 @@ public class PostBookingMeetingRoomHandler: ICommandHandler<PostBookingMeetingRo
         // Получить время конца бронирования
         var endTimeMeeting = TimeOnly.Parse(command.EndTimeMeeting);
         
-        var bookingMeetingRoom = await _roomService.BookingRoomAsync(command.IdRoom, dateMeeting, startTimeMeeting, endTimeMeeting);
+        var bookingMeetingRoom = await _repository.BookingMeetingRoomAsync
+            (
+                command.IdRoom, 
+                dateMeeting, 
+                startTimeMeeting, 
+                endTimeMeeting
+            ); //await _roomService.BookingRoomAsync(command.IdRoom, dateMeeting, startTimeMeeting, endTimeMeeting);
 
         return _mapper.Map<BookingMeetingRoomDto>(bookingMeetingRoom);
     }

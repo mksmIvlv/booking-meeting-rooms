@@ -31,7 +31,7 @@ public class KafkaService<T>: IPublishBusService<T> where T: IMessage
     /// <summary>
     /// Отправка сообщений в очередь
     /// </summary>
-    /// <param name="classMessage"></param>
+    /// <param name="classMessage">Класс "Сообщение"</param>
     public async Task SendMessageAsync(T classMessage)
     {
         var tempString = JsonConvert.SerializeObject(classMessage);

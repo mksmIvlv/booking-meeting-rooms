@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using Confluent.Kafka;
-using Contracts.Models;
+using Contracts.Model;
 using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
 using Notification.Infrastructure.Connections;
@@ -27,7 +27,7 @@ public static class ServiceCollectionExtensions
         Assembly consumers)
     {
         // Подключение RabbitMq
-        //services.AddScoped<IConnectionRabbit, ConnectionRabbit>();
+        services.AddScoped<IConnectionRabbit, ConnectionRabbit>();
         //services.AddMassTransitRabbitMq(settings, consumers);
         
         // Подключение Kafka

@@ -6,7 +6,7 @@ namespace Application.Mediatr.Features.Models;
 /// <summary>
 /// Запрос на получение расписания комнаты
 /// </summary>
-public class GetScheduleSpecificRoomQueries : IQuery<MeetingRoomDto>
+public class GetScheduleSpecificRoomQuery : IQuery<MeetingRoomDto>
 {
     #region Свойства
 
@@ -19,7 +19,7 @@ public class GetScheduleSpecificRoomQueries : IQuery<MeetingRoomDto>
 
     #region Конструктор
 
-    public GetScheduleSpecificRoomQueries(Guid idRoom)
+    public GetScheduleSpecificRoomQuery(Guid idRoom)
     {
         IdRoom = idRoom;
     }
