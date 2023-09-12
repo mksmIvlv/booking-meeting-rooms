@@ -13,6 +13,9 @@ public class SavingPipelineBehaviour<TIn, TOut> : IPipelineBehavior<TIn, TOut> w
 {
     #region Поле
 
+    /// <summary>
+    /// Контекст
+    /// </summary>
     private readonly DbContext _context;
 
     #endregion

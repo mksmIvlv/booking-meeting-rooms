@@ -15,13 +15,13 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddNotificationApplication(this IServiceCollection services)
     {
         // Получение сообщений с помощью RabbitMq
-        //services.AddScoped<IConsumerBus, RabbitMqService>();
+        services.AddScoped<IConsumerBus, RabbitMqService>();
         
         // Получение сообщений с помощью Kafka
         //services.AddScoped<IConsumerBus, KafkaService>();
 
         // Получение сообщений с помощью Http
-        services.AddScoped<HttpService>();
+        //services.AddScoped<HttpService>();
         
         // Отправка уведомлений в телеграм
         services.AddScoped<INotification, NotificationTelegramService>();

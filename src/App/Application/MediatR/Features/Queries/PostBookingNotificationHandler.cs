@@ -2,7 +2,7 @@
 using Application.Mediatr.Features.Models;
 using Application.Mediatr.Interfaces.Queries;
 using Contracts.Interface;
-using Contracts.Models;
+using Contracts.Model;
 using MediatR;
 
 namespace Application.Mediatr.Features.Queries;
@@ -10,7 +10,7 @@ namespace Application.Mediatr.Features.Queries;
 /// <summary>
 /// Обработчик отправки оповещения
 /// </summary>
-public class PostBookingNotificationHandler: IQueryHandler<PostBookingNotificationQueries, Unit>
+public class PostBookingNotificationHandler: IQueryHandler<PostBookingNotificationQuery, Unit>
 {
     #region Поле
 
@@ -35,9 +35,9 @@ public class PostBookingNotificationHandler: IQueryHandler<PostBookingNotificati
     /// <summary>
     /// Отправка оповещения
     /// </summary>
-    /// <param name="queries">Запрос</param>
+    /// <param name="query">Запрос</param>
     /// <param name="cancellationToken">Токен</param>
-    public async Task<Unit> Handle(PostBookingNotificationQueries queries, CancellationToken cancellationToken)
+    public async Task<Unit> Handle(PostBookingNotificationQuery query, CancellationToken cancellationToken)
     {
         var messageBooking = new MessageNotification
         (

@@ -1,5 +1,4 @@
-﻿using Contracts.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Contracts.Model;
 using Notification.Application.Interfaces;
 
 namespace Notification.Application.Services;

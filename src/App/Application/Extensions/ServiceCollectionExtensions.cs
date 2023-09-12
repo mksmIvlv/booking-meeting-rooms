@@ -22,11 +22,8 @@ public static class ServiceCollectionExtensions
     /// </summary>
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
-        // Сервис для работы с бронированием и разбронированием
-        services.AddScoped<IRoomService, RoomService>();
-        
         // Сервис для отправки оповещения, RabbitMQ
-        //services.AddScoped<IPublishBusService<IMessage>, RabbitMqService<IMessage>>();
+        services.AddScoped<IPublishBusService<IMessage>, RabbitMqService<IMessage>>();
         //services.AddScoped<IPublishBusService<IMessage>, MassTransitRabbitMqService<IMessage>>();
         
         // Сервис для отправки оповещения, Kafka
@@ -37,7 +34,7 @@ public static class ServiceCollectionExtensions
         //services.AddScoped<IPublishBusService<IMessage>, GrpcService<IMessage>>();
 
         // Сервис для отправки оповещения, Http
-        services.AddScoped<IPublishBusService<IMessage>, HttpService<IMessage>>();
+        //services.AddScoped<IPublishBusService<IMessage>, HttpService<IMessage>>();
 
         // AutoMapper
         services.AddAutoMapper(typeof(MeetingRoomProfileMapping));

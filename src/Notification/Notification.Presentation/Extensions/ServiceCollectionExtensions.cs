@@ -13,7 +13,7 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddNotificationPresentation(this IServiceCollection services)
     {
         // Если реализация шин базовая, то подключается hosted service
-        //services.AddHostedService<NotificationHostedService>();
+        services.AddHostedService<NotificationHostedService>();
 
         services.AddControllers();
         services.AddEndpointsApiExplorer();

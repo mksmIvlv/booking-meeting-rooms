@@ -37,18 +37,18 @@ public static class ServiceCollectionExtensions
         services.AddHealthChecks()
             .AddNpgSql(settings.ConnectionStringDb)
             .AddRabbitMQ(new Uri(settings.RabbitMqSettings.ConnectionAmqp))
-            .AddRedis(settings.RedisSettings.ConnectionString)
-            .AddKafka(new ProducerConfig
+            .AddRedis(settings.RedisSettings.ConnectionString);
+            /*.AddKafka(new ProducerConfig
             {
                 BootstrapServers = settings.KafkaSettings.BootstrapServers,
                 SecurityProtocol = SecurityProtocol.SaslSsl,
                 SaslMechanism = SaslMechanism.Plain,
                 SaslUsername = settings.KafkaSettings.SaslUsername,
                 SaslPassword = settings.KafkaSettings.SaslPassword
-            }, settings.KafkaSettings.TopicHealth);
+            }, settings.KafkaSettings.TopicHealth)*/
         
         // Подключение шин
-        //services.AddScoped<IConnectionRabbitMq, ConnectionRabbitMq>();
+        services.AddScoped<IConnectionRabbitMq, ConnectionRabbitMq>();
         //services.AddMassTransitRabbitMq(settings);
         //services.AddScoped<IConnectionKafka, ConnectionKafka>();
         //services.AddMassTransitKafka(settings);

@@ -1,6 +1,6 @@
 ﻿using Contracts.Interface;
 
-namespace Contracts.Models;
+namespace Contracts.Model;
 
 public class MessageNotification : IMessage
 {

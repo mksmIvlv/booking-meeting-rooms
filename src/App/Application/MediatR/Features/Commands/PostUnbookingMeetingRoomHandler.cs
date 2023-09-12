@@ -2,7 +2,8 @@
 using Application.Mediatr.Features.Models;
 using Application.Mediatr.Interfaces.Commands;
 using Contracts.Interface;
-using Contracts.Models;
+using Contracts.Model;
+using Domain.Interfaces.Infrastructure;
 using MediatR;
 
 namespace Application.Mediatr.Features.Commands;
@@ -15,9 +16,9 @@ public class PostUnbookingMeetingRoomHandler: ICommandHandler<PostUnbookingMeeti
     #region Поле
 
     /// <summary>
-    /// Сервис для работы с комнатами
+    /// Доступ к репозиторию
     /// </summary>
-    private readonly IRoomService _roomService;
+    private readonly IRepository _repository;
     
     /// <summary>
     /// Сервис для отправки сообщений в шину
@@ -28,9 +29,9 @@ public class PostUnbookingMeetingRoomHandler: ICommandHandler<PostUnbookingMeeti
 
     #region Конструктор
 
-    public PostUnbookingMeetingRoomHandler(IRoomService roomService, IPublishBusService<IMessage> publishBusService)
+    public PostUnbookingMeetingRoomHandler(IRepository repository, IPublishBusService<IMessage> publishBusService)
     {
-        _roomService = roomService;
+        _repository = repository;
         _publishBusService = publishBusService;
     }
 
@@ -45,9 +46,18 @@ public class PostUnbookingMeetingRoomHandler: ICommandHandler<PostUnbookingMeeti
     /// <param name="cancellationToken">Токен</param>
     public async Task<Unit> Handle(PostUnbookingMeetingRoomCommand command, CancellationToken cancellationToken)
     {
+        // Получить текущую дату
+        var currentDateOnly = DateOnly.FromDateTime(DateTime.Now);
+        // Получить текущее время
+        var currentTimeOnly = TimeOnly.FromDateTime(DateTime.Now);
+        
+        // Разбронировать комнаты
+        await _repository.UnbookingMeetingRoomAsync(currentDateOnly, currentTimeOnly);
+        
+        // Получить данные для оповещения о разбронировании комнат
+        var collectionBooking = await _repository.UnbookingNotificationAsync(currentDateOnly, currentTimeOnly);
+        
         // Коллекция комнат для оповещения о разбронировании
-        var collectionBooking = await _roomService.UnbookingRoomAsync();
-
         for (int i = 0; i < collectionBooking.Count; i++)
         {
             var message = new MessageNotification

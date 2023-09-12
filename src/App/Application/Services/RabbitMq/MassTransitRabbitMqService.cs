@@ -19,7 +19,7 @@ public class MassTransitRabbitMqService<T>: IPublishBusService<T> where T: IMess
     private readonly IBus _bus;
 
     /// <summary>
-    /// Подключение к RabbitMq
+    /// Настройки RabbitMq
     /// </summary>
     private readonly InfrastructureSettings _settings;
 
@@ -46,7 +46,6 @@ public class MassTransitRabbitMqService<T>: IPublishBusService<T> where T: IMess
         var endPoint = await _bus.GetSendEndpoint
         (
             new Uri($"{
-                
                 _settings.RabbitMqSettings.NameProvider}://{
                 _settings.RabbitMqSettings.ConnectionString}/{
                 _settings.RabbitMqSettings.Queue}")

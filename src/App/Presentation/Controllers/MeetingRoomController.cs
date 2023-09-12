@@ -43,7 +43,7 @@ public class MeetingRoomController : ControllerBase
         var bookingMeetingRoomDto = await _mediator.Send(
             new PostBookingMeetingRoomCommand(id, dateMeeting, startTimeMeeting, endTimeMeeting));
         
-        await _mediator.Send(new PostBookingNotificationQueries());
+        await _mediator.Send(new PostBookingNotificationQuery());
 
         return bookingMeetingRoomDto;
     }

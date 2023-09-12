@@ -59,6 +59,7 @@ public class RabbitMqService<T>: IPublishBusService<T> where T: IMessage
             (
                 exchange: "",
                 routingKey: _connectRabbit.Settings.Queue,
+                mandatory: false,
                 basicProperties: null,
                 body: body
             );

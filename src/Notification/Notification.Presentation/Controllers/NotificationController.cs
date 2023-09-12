@@ -1,4 +1,4 @@
-﻿using Contracts.Models;
+﻿using Contracts.Model;
 using Microsoft.AspNetCore.Mvc;
 using Notification.Application.Interfaces;
 using Notification.Application.Services;
