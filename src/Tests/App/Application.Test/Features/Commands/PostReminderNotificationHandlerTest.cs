@@ -21,7 +21,7 @@ public class PostReminderNotificationHandlerTest
     /// <summary>
     /// Доступ к тестируемому сервису
     /// </summary>
-    private ICommandHandler<PostReminderNotificationCommand, Unit> _handler;
+    private ICommandHandler<GetReminderNotificationCommand, Unit> _handler;
 
     /// <summary>
     /// Доступ к репозиторию
@@ -48,7 +48,7 @@ public class PostReminderNotificationHandlerTest
         _token = new CancellationToken();
         _repositoryMoq = Substitute.For<IRepository>();
         _publishBusServiceMoq = Substitute.For<IPublishBusService<IMessage>>();
-        _handler = new PostReminderNotificationHandler(_publishBusServiceMoq, _repositoryMoq);
+        _handler = new GetReminderNotificationHandler(_publishBusServiceMoq, _repositoryMoq);
     }
     
     [Test, Description("Тест на корректное поведение конструктора.")]
@@ -88,7 +88,7 @@ public class PostReminderNotificationHandlerTest
         _repositoryMoq.GetRoomsForNotification(dateMeeting, Arg.Any<TimeOnly>(), Arg.Any<TimeOnly>())
             .Returns(collectionBookingMeetingRoom);
         // Команда
-        var command = new PostReminderNotificationCommand();
+        var command = new GetReminderNotificationCommand();
         
         //Act
         _handler.Handle(command, _token)

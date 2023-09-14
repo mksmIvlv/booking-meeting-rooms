@@ -11,7 +11,7 @@ namespace Application.Mediatr.Features.Commands;
 /// <summary>
 /// Обработчик отправки напоминаний о забронированной комнаты
 /// </summary>
-public class PostReminderNotificationHandler: ICommandHandler<PostReminderNotificationCommand, Unit>
+public class GetReminderNotificationHandler: ICommandHandler<GetReminderNotificationCommand, Unit>
 {
     #region Поля
 
@@ -29,7 +29,7 @@ public class PostReminderNotificationHandler: ICommandHandler<PostReminderNotifi
     
     #region Конструктор
 
-    public PostReminderNotificationHandler(IPublishBusService<IMessage> publishBusService, IRepository repository)
+    public GetReminderNotificationHandler(IPublishBusService<IMessage> publishBusService, IRepository repository)
     {
         _publishBusService = publishBusService;
         _repository = repository;
@@ -44,7 +44,7 @@ public class PostReminderNotificationHandler: ICommandHandler<PostReminderNotifi
     /// </summary>
     /// <param name="command">Команда</param>
     /// <param name="cancellationToken">Токен</param>
-    public async Task<Unit> Handle(PostReminderNotificationCommand command, CancellationToken cancellationToken)
+    public async Task<Unit> Handle(GetReminderNotificationCommand command, CancellationToken cancellationToken)
     {
         // Получить текущую дату
         var currentDateOnly = DateOnly.FromDateTime(DateTime.Now);

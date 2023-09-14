@@ -58,7 +58,7 @@ public class PostBookingMeetingRoomHandler: ICommandHandler<PostBookingMeetingRo
                 dateMeeting, 
                 startTimeMeeting, 
                 endTimeMeeting
-            ); //await _roomService.BookingRoomAsync(command.IdRoom, dateMeeting, startTimeMeeting, endTimeMeeting);
+            );
 
         return _mapper.Map<BookingMeetingRoomDto>(bookingMeetingRoom);
     }

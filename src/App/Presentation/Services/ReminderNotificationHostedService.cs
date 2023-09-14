@@ -61,7 +61,7 @@ public class ReminderNotificationHostedService: BackgroundService
                         {
                             var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
 
-                            await mediator.Send(new PostReminderNotificationCommand());
+                            await mediator.Send(new GetReminderNotificationCommand());
                         }
                     }
                     else

@@ -47,6 +47,17 @@ public class MeetingRoomController : ControllerBase
 
         return bookingMeetingRoomDto;
     }
+    
+    /// <summary>
+    /// Расписание комнаты
+    /// </summary>
+    /// <param name="id">Id комнаты</param>
+    /// <returns>Расписание комнаты</returns>
+    [HttpGet]
+    public async Task<MeetingRoomDto> ScheduleSpecificRoomAsync(Guid id)
+    {
+        return await _mediator.Send(new GetScheduleSpecificRoomQuery(id));
+    }
 
     #endregion
 }
