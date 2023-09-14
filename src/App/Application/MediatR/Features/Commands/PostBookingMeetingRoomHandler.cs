@@ -1,5 +1,4 @@
-﻿using Application.Interfaces;
-using Application.Mediatr.Features.Models;
+﻿using Application.Mediatr.Features.Models;
 using Application.Mediatr.Interfaces.Commands;
 using Application.Models.Dto;
 using AutoMapper;

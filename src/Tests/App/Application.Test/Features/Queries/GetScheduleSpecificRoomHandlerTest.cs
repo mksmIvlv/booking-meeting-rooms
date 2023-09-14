@@ -1,4 +1,5 @@
-﻿using Application.Mediatr.Features.Models;
+﻿using System.Reflection;
+using Application.Mediatr.Features.Models;
 using Application.Mediatr.Features.Queries;
 using Application.Mediatr.Interfaces.Queries;
 using Application.Models.Dto;
@@ -46,6 +47,22 @@ public class GetScheduleSpecificRoomHandlerTest
         _repositoryMoq = Substitute.For<IRepository>();
         _mapperMoq = Substitute.For<IMapper>();
         _handler = new GetScheduleSpecificRoomHandler(_repositoryMoq, _mapperMoq);
+    }
+    
+    [Test, Description("Тест на корректное поведение конструктора.")]
+    public void ConstructorTest()
+    {
+        // Arrange
+        var fieldRepositoryMoq = _handler.GetType().GetField("_repository",BindingFlags.Instance | BindingFlags.NonPublic);
+        var fieldMapperMoq = _handler.GetType().GetField("_mapper",BindingFlags.Instance | BindingFlags.NonPublic);
+        
+        // Act
+        var actualValueRepositoryMoq = fieldRepositoryMoq?.GetValue(_handler);
+        var actualValueMapperMoq = fieldMapperMoq?.GetValue(_handler);
+        
+        // Assert
+        Assert.That(actualValueRepositoryMoq, Is.EqualTo(_repositoryMoq));
+        Assert.That(actualValueMapperMoq, Is.EqualTo(_mapperMoq));
     }
 
     [Test, Description("Тест проверки успешного выполнения метода.")]

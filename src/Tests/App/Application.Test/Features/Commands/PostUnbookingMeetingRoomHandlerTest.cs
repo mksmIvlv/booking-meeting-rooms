@@ -1,4 +1,5 @@
-﻿using Application.Interfaces;
+﻿using System.Reflection;
+using Application.Interfaces;
 using Application.Mediatr.Features.Commands;
 using Application.Mediatr.Features.Models;
 using Application.Mediatr.Interfaces.Commands;
@@ -48,6 +49,22 @@ public class PostUnbookingMeetingRoomHandlerTest
         _repositoryMoq = Substitute.For<IRepository>();
         _publishBusServiceMoq = Substitute.For<IPublishBusService<IMessage>>();
         _handler = new PostUnbookingMeetingRoomHandler(_repositoryMoq, _publishBusServiceMoq);
+    }
+    
+    [Test, Description("Тест на корректное поведение конструктора.")]
+    public void ConstructorTest()
+    {
+        // Arrange
+        var fieldRepositoryMoq = _handler.GetType().GetField("_repository",BindingFlags.Instance | BindingFlags.NonPublic);
+        var fieldBusServiceMoq = _handler.GetType().GetField("_publishBusService",BindingFlags.Instance | BindingFlags.NonPublic);
+        
+        // Act
+        var actualValueRepositoryMoq = fieldRepositoryMoq?.GetValue(_handler);
+        var actualValueBusServiceMoq = fieldBusServiceMoq?.GetValue(_handler);
+        
+        // Assert
+        Assert.That(actualValueRepositoryMoq, Is.EqualTo(_repositoryMoq));
+        Assert.That(actualValueBusServiceMoq, Is.EqualTo(_publishBusServiceMoq));
     }
 
     [Test, Description("Тест проверки успешного выполнения метода.")]

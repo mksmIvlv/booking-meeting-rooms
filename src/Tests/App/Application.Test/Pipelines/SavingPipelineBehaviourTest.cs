@@ -1,4 +1,5 @@
-﻿using Application.Mediatr.Features.Models;
+﻿using System.Reflection;
+using Application.Mediatr.Features.Models;
 using Application.Mediatr.Pipelines;
 using Application.Models.Dto;
 using MediatR;
@@ -32,6 +33,19 @@ public class SavingPipelineBehaviourTest
     {
         _contextMoq = Substitute.For<DbContext>();
         _pipelineBehavior = new SavingPipelineBehaviour<PostBookingMeetingRoomCommand, BookingMeetingRoomDto>(_contextMoq);
+    }
+    
+    [Test, Description("Тест на корректное поведение конструктора.")]
+    public void ConstructorTest()
+    {
+        // Arrange
+        var fieldContextMoq = _pipelineBehavior.GetType().GetField("_context",BindingFlags.Instance | BindingFlags.NonPublic);
+        
+        // Act
+        var actualValueContextMoq = fieldContextMoq?.GetValue(_pipelineBehavior);
+        
+        // Assert
+        Assert.That(actualValueContextMoq, Is.EqualTo(_contextMoq));
     }
     
     [Test, Description("Тест проверки успешного выполнения метода.")]

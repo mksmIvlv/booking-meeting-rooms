@@ -47,18 +47,13 @@ public class RepositoryTest
     public void ConstructorTest()
     {
         // Arrange
-        var dbContext = new DbContextOptionsBuilder<Context>()
-            .UseInMemoryDatabase(databaseName: "TestDatabase")
-            .Options;
-        var context = new Context(dbContext);
-        var repository = new Repository(context);
-        var field = repository.GetType().GetField("_context",BindingFlags.Instance | BindingFlags.NonPublic);
+        var field = _repository.GetType().GetField("_context",BindingFlags.Instance | BindingFlags.NonPublic);
         
         // Act
-        var actualValue = field .GetValue(repository);
+        var actualValue = field?.GetValue(_repository);
         
         // Assert
-        Assert.That(actualValue, Is.EqualTo(context));
+        Assert.That(actualValue, Is.EqualTo(_context));
     }
 
     [Test, Description("Тест бронирования комнаты, если такая комната есть.")]
