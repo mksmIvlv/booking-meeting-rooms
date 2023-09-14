@@ -1,4 +1,5 @@
-﻿using Application.Interfaces;
+﻿using System.Reflection;
+using Application.Interfaces;
 using Application.Mediatr.Features.Models;
 using Application.Mediatr.Features.Queries;
 using Application.Mediatr.Interfaces.Queries;
@@ -40,6 +41,19 @@ public class PostBookingNotificationHandlerTest
         _publishBusServiceMoq = Substitute.For<IPublishBusService<IMessage>>();
         _token = new CancellationToken();
         _handler = new PostBookingNotificationHandler(_publishBusServiceMoq);
+    }
+    
+    [Test, Description("Тест на корректное поведение конструктора.")]
+    public void ConstructorTest()
+    {
+        // Arrange
+        var fieldPublishBusServiceMoq = _handler.GetType().GetField("_publishBusService",BindingFlags.Instance | BindingFlags.NonPublic);
+        
+        // Act
+        var actualValuePublishBusServiceMoq = fieldPublishBusServiceMoq?.GetValue(_handler);
+        
+        // Assert
+        Assert.That(actualValuePublishBusServiceMoq, Is.EqualTo(_publishBusServiceMoq));
     }
 
     [Test, Description("Тест проверки успешного выполнения метода.")]

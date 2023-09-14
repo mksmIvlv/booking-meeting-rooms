@@ -1,4 +1,5 @@
-﻿using Application.Mediatr.Features.Models;
+﻿using System.Reflection;
+using Application.Mediatr.Features.Models;
 using Application.Mediatr.Pipelines;
 using Application.Models.Dto;
 using MediatR;
@@ -32,6 +33,19 @@ public class LoggingPipelineBehaviourTest
     {
         _loggerMoq = Substitute.For<ILogger<LoggingPipelineBehaviour<PostBookingMeetingRoomCommand, BookingMeetingRoomDto>>>();
         _pipelineBehavior = new LoggingPipelineBehaviour<PostBookingMeetingRoomCommand, BookingMeetingRoomDto>(_loggerMoq);
+    }
+    
+    [Test, Description("Тест на корректное поведение конструктора.")]
+    public void ConstructorTest()
+    {
+        // Arrange
+        var fieldLoggerMoq = _pipelineBehavior.GetType().GetField("_logger",BindingFlags.Instance | BindingFlags.NonPublic);
+        
+        // Act
+        var actualValueLoggerMoq = fieldLoggerMoq?.GetValue(_pipelineBehavior);
+        
+        // Assert
+        Assert.That(actualValueLoggerMoq, Is.EqualTo(_loggerMoq));
     }
 
     [Test, Description("Тест проверки успешного выполнения метода.")]
