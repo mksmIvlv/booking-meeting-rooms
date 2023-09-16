@@ -1,110 +1,18 @@
-    Итерация 1.
-        1. Domain:
-            - реализованно две модели по принципу богатой модели.
-            - описан интерфейс для работы с бд.
-        2. Infrastructure:
-            - используется PostgreSQL.
-            - работа с бд через Entity Framework, Fluent Api, с использованием миграции.
-        3. Application:
-            - используется MediatR, команды, запросы и модели.
-            - реализован маппинг с помощью AutoMapper, описаны модели dto.
-        4. Presentation:
-            - реализован хостед сервис для разбронирования комнат.
-            - используется два контроллера, DI контейнеры, swagger.
-    Итерация 2.
-        1. Infrastructure:
-            - поменяна логика бронирования комнат, добавлена распределенная блокировка Redis.
-            - добавлен класс ServiceCollectionExtensions.
-        2. Presentation:
-            - добавлен фильтр исключений.
-            - добавлен класс ServiceCollectionExtensions.
-            - настроен Logger с помощью serilog.
-        3. Application:
-            - добавлен класс ServiceCollectionExtensions.
-            - реализован Pipelines с помощью MediatR (пишутся логи с информацией, какие методы выполняются).
-    Итерация 3.
-        1. Application:
-            - реализован Pipelines с помощью MediatR (сохранение в бд).
-            - добавлен сервис с распределенной блокировкой 
-              (блокировка была вынесена в этот сервис из репозитория).
-        2. Presentation:
-            - реализовано подключение к бд через строку из appsettings.json.
-    Итерация 4.
-        1. Application:
-            - реализован Pipelines с помощью MediatR 
-              (отправка оповещения о новом бронировании) в шину RabbitMQ.
-            - добавлен сервис с отправкой оповещения 
-              (если создана новая бронь и напоминания о бронировании) в шину RabbitMQ.
-            - используется RabbitMQ.
-        2. Infrastructure:
-            - реализован новый класс для логики миграций.
-            - реализовано подключение к шине.
-            - вынесена логика подключения к Redis.
-        3. Domain:
-            - отредактированна модель bookingMeetingRoom (добавленно новое свойство).
-        4. Presentation:
-            - настройки приложения (строки подключения, логины, пароли и т.д.) вынесенны в appsettings.json.
-            - используется IOptions.
-            - добавлен новый hostedService (отправа напоминаний о бронировании).
+  В данном проекте рассмотрены следующие технологии:
+    1. Infrastructure:
+        PostgreSQL, Entity Framework(Fluent Api), Redis,
+        gRPC(взаимодействие с другим приложением).
 
-        Реализовано второе приложение, которое служит для обработки сообщений из шины RabbitMQ/Kafka 
-        и дальнейшей отправки в Telegram.
-        Приложение содержит: Application, Infrastructure, Presentation.
-        Приложение называется Notification.
+    2. Application:
+        MediatR, AutoMapper, RabbitMQ, Kafka, MassTransit
+        Http(взаимодействие с другим приложением),
+        Polly/Microsoft.Polly.
 
-        5. Notification.Application:
-            - реализована логика обработки сообщений из шины.
-            - реализована логика отправки сообщений в telegram.
-        6. Notification.Infrastructure:
-            - реализовано подключение к шине.
-            - реализовано подключение к telegram.
-        7. Notification.Presentation:
-            - реализован hostedService для прослушивания шины и отправки в telegram.
-    Итерация 5.
-        1. Infrastructure:
-            - Реализована работа MassTransit с RabbitMq.
-        2. Notification.Application:
-            - Реализована работа MassTransit с RabbitMq .
-            - Отправка сообщений происходит в канал с администраторами и в личные сообщения.
-    Итерация 6.
-        1. Infrastructure:
-            - Реализовано подключение к Kafka.
-            - Реализованы HealthCheck для шин, бд.
-        2. Application:
-            - Реализована отправка сообщений в шину Kafka.
-            - Реализованы метрики OpenTelemetry в Prometheus.
-            - Реализованы трассировки в Jaeger.
-            - Реализован функционал по логированию в Elastic и Kibana.
-            - Реализованы HealthCheckUI для просмотра.
-        3. Notification.Infrastructure
-            - Реализовано подключение к Kafka.
-        4. Notification.Application:
-            - Реализовано получение сообщений из шины Kafka и отправка в телеграм.
-    Итерация 7.
-        1. Infrastructure:
-            - Реализована работа MassTransit с Kafka.
-            - Реализована работа с gRPC (клиент).
-        2. Application:
-            - Реализован сервис для отправки сообщений через gRPC.
-        2. Notification.Application:
-            - Реализована работа MassTransit с Kafka.
-            - Реализована работа с gRPC (сервер).
-    Итерация 8.
-        1. Application:
-            - Реализован сервис отправки сообщений с помощью Http.
-            - Реализованы политки с помощью библиотеки Polly.
-            - Реализованы политки с помощью библиотеки Microsoft.Polly.
-        2. Notification.Application:
-            - Реализован сервис для обработки входящих сообщений через http.
-        3. Notification.Presentation:
-            - Реализован контроллер для получения сообщений с помощью http.
-    Итерация 9.
-        Domain:
-            - Добавлена новая модель (предметы).
-            - Добавлена модель промежуточной таблицу с свойством.
-        Infrastructure:
-            - Реализована связь между таблицами (MeetingRoom-Item) many-to-many через промежуточную таблицу.
-            - Добавлена новая миграция.
-        Написаны тесты.
+    3. Presentation:
+        Serilog, Swagger, HealthCheck/HealthCheckUI, Jaeger 
+        OpenTelemetry/Prometheus, Elastic/Kibana.
+    
+    4. Tests:
+        NSubstitute, Nunit.
 
-    *Все доп сервисы подняты локально в докере, кроме Prometheus
+    *Все доп сервисы подняты локально в Docker, кроме Prometheus.

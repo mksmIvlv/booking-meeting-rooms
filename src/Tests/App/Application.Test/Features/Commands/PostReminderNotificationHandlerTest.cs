@@ -48,7 +48,7 @@ public class PostReminderNotificationHandlerTest
         _token = new CancellationToken();
         _repositoryMoq = Substitute.For<IRepository>();
         _publishBusServiceMoq = Substitute.For<IPublishBusService<IMessage>>();
-        _handler = new GetReminderNotificationHandler(_publishBusServiceMoq, _repositoryMoq);
+        _handler = new ReminderNotificationHandler(_publishBusServiceMoq, _repositoryMoq);
     }
     
     [Test, Description("Тест на корректное поведение конструктора.")]

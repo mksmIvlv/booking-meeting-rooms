@@ -40,7 +40,7 @@ public class PostBookingNotificationHandlerTest
     {
         _publishBusServiceMoq = Substitute.For<IPublishBusService<IMessage>>();
         _token = new CancellationToken();
-        _handler = new PostBookingNotificationHandler(_publishBusServiceMoq);
+        _handler = new BookingNotificationHandler(_publishBusServiceMoq);
     }
     
     [Test, Description("Тест на корректное поведение конструктора.")]

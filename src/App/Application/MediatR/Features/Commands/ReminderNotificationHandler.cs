@@ -11,7 +11,7 @@ namespace Application.Mediatr.Features.Commands;
 /// <summary>
 /// Обработчик отправки напоминаний о забронированной комнаты
 /// </summary>
-public class GetReminderNotificationHandler: ICommandHandler<GetReminderNotificationCommand, Unit>
+public class ReminderNotificationHandler: ICommandHandler<GetReminderNotificationCommand, Unit>
 {
     #region Поля
 
@@ -29,7 +29,7 @@ public class GetReminderNotificationHandler: ICommandHandler<GetReminderNotifica
     
     #region Конструктор
 
-    public GetReminderNotificationHandler(IPublishBusService<IMessage> publishBusService, IRepository repository)
+    public ReminderNotificationHandler(IPublishBusService<IMessage> publishBusService, IRepository repository)
     {
         _publishBusService = publishBusService;
         _repository = repository;

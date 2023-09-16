@@ -11,7 +11,7 @@ namespace Application.Mediatr.Features.Commands;
 /// <summary>
 /// Обработчик разбронирования комнат
 /// </summary>
-public class PostUnbookingMeetingRoomHandler: ICommandHandler<PostUnbookingMeetingRoomCommand, Unit>
+public class UnbookingMeetingRoomHandler: ICommandHandler<PostUnbookingMeetingRoomCommand, Unit>
 {
     #region Поле
 
@@ -29,7 +29,7 @@ public class PostUnbookingMeetingRoomHandler: ICommandHandler<PostUnbookingMeeti
 
     #region Конструктор
 
-    public PostUnbookingMeetingRoomHandler(IRepository repository, IPublishBusService<IMessage> publishBusService)
+    public UnbookingMeetingRoomHandler(IRepository repository, IPublishBusService<IMessage> publishBusService)
     {
         _repository = repository;
         _publishBusService = publishBusService;

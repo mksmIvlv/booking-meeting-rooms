@@ -46,7 +46,7 @@ public class GetScheduleSpecificRoomHandlerTest
         _token = new CancellationToken();
         _repositoryMoq = Substitute.For<IRepository>();
         _mapperMoq = Substitute.For<IMapper>();
-        _handler = new GetScheduleSpecificRoomHandler(_repositoryMoq, _mapperMoq);
+        _handler = new ScheduleSpecificRoomHandler(_repositoryMoq, _mapperMoq);
     }
     
     [Test, Description("Тест на корректное поведение конструктора.")]

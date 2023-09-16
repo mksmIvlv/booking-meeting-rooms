@@ -1,6 +1,6 @@
 ﻿using Application.Mediatr.Interfaces.Commands;
+using Domain.Interfaces.Infrastructure;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace Application.Mediatr.Pipelines;
 
@@ -16,15 +16,15 @@ public class SavingPipelineBehaviour<TIn, TOut> : IPipelineBehavior<TIn, TOut> w
     /// <summary>
     /// Контекст
     /// </summary>
-    private readonly DbContext _context;
+    private readonly IRepository _repository;
 
     #endregion
 
     #region Конструктор
 
-    public SavingPipelineBehaviour(DbContext context)
+    public SavingPipelineBehaviour(IRepository repository)
     {
-        _context = context;
+        _repository = repository;
     }
 
     #endregion
@@ -44,7 +44,7 @@ public class SavingPipelineBehaviour<TIn, TOut> : IPipelineBehavior<TIn, TOut> w
         
         if (request is ICommand<TOut>)
         {
-            await _context.SaveChangesAsync();
+            await _repository.SaveAsync();
         }
 
         return result;

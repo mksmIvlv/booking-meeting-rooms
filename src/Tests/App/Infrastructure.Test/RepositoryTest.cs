@@ -327,6 +327,27 @@ public class RepositoryTest
         // Assert
         Assert.That(actual.Count, Is.EqualTo(0));
     }
+
+    [Test, Description("Тест сохранения данных в бд.")]
+    public void SaveAsyncTest()
+    {
+        // Arrange
+        var meetingRoom = new MeetingRoom("Тестовая комната № 1", "Описание тестовой комнаты № 1");
+        // Добавление комнаты в временную бд
+        _context.AddRange(meetingRoom);
+        
+        // Act
+        _repository.SaveAsync()
+            .GetAwaiter()
+            .GetResult();
+        var actual = _context.Set<MeetingRoom>()
+            .FirstOrDefaultAsync(e => e.Id == meetingRoom.Id)
+            .GetAwaiter()
+            .GetResult();
+        
+        // Assert
+        Assert.That(actual.Id, Is.EqualTo(meetingRoom.Id));
+    }
     
     #endregion
 }

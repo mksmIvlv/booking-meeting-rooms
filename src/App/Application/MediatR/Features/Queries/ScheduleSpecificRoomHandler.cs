@@ -9,7 +9,7 @@ namespace Application.Mediatr.Features.Queries;
 /// <summary>
 /// Обработчик получения расписания
 /// </summary>
-public class GetScheduleSpecificRoomHandler : IQueryHandler<GetScheduleSpecificRoomQuery, MeetingRoomDto>
+public class ScheduleSpecificRoomHandler : IQueryHandler<GetScheduleSpecificRoomQuery, MeetingRoomDto>
 {
     #region Поля
 
@@ -27,7 +27,7 @@ public class GetScheduleSpecificRoomHandler : IQueryHandler<GetScheduleSpecificR
 
     #region Конструктор
 
-    public GetScheduleSpecificRoomHandler(IRepository repository, IMapper mapper)
+    public ScheduleSpecificRoomHandler(IRepository repository, IMapper mapper)
     {
         _repository = repository;
         _mapper = mapper;

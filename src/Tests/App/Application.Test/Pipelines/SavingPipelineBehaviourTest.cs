@@ -2,6 +2,7 @@
 using Application.Mediatr.Features.Models;
 using Application.Mediatr.Pipelines;
 using Application.Models.Dto;
+using Domain.Interfaces.Infrastructure;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using NSubstitute;
@@ -22,7 +23,7 @@ public class SavingPipelineBehaviourTest
     /// <summary>
     /// Доступ к контексту
     /// </summary>
-    private DbContext _contextMoq;
+    private IRepository _repositoryMoq;
 
     #endregion
     
@@ -31,21 +32,21 @@ public class SavingPipelineBehaviourTest
     [SetUp]
     public void SavingPipelineBehaviourTestSetUp()
     {
-        _contextMoq = Substitute.For<DbContext>();
-        _pipelineBehavior = new SavingPipelineBehaviour<PostBookingMeetingRoomCommand, BookingMeetingRoomDto>(_contextMoq);
+        _repositoryMoq = Substitute.For<IRepository>();
+        _pipelineBehavior = new SavingPipelineBehaviour<PostBookingMeetingRoomCommand, BookingMeetingRoomDto>(_repositoryMoq);
     }
     
     [Test, Description("Тест на корректное поведение конструктора.")]
     public void ConstructorTest()
     {
         // Arrange
-        var fieldContextMoq = _pipelineBehavior.GetType().GetField("_context",BindingFlags.Instance | BindingFlags.NonPublic);
+        var fieldContextMoq = _pipelineBehavior.GetType().GetField("_repository",BindingFlags.Instance | BindingFlags.NonPublic);
         
         // Act
         var actualValueContextMoq = fieldContextMoq?.GetValue(_pipelineBehavior);
         
         // Assert
-        Assert.That(actualValueContextMoq, Is.EqualTo(_contextMoq));
+        Assert.That(actualValueContextMoq, Is.EqualTo(_repositoryMoq));
     }
     
     [Test, Description("Тест проверки успешного выполнения метода.")]
@@ -83,7 +84,7 @@ public class SavingPipelineBehaviourTest
         Assert.That(actual.DateMeeting, Is.EqualTo(DateOnly.Parse(request.DateMeeting)));
         Assert.That(actual.StartTimeMeeting, Is.EqualTo(TimeOnly.Parse(request.StartTimeMeeting)));
         
-        _contextMoq.Received(1).SaveChangesAsync();
+        _repositoryMoq.Received(1).SaveAsync();
     }
     
     [Test, Description("Тест проверки метода с запросом, когда сохранение не выполняется.")]
@@ -91,7 +92,7 @@ public class SavingPipelineBehaviourTest
     {
         // Arrange
         IPipelineBehavior<GetScheduleSpecificRoomQuery, MeetingRoomDto> _pipelineBehavior = 
-            new SavingPipelineBehaviour<GetScheduleSpecificRoomQuery, MeetingRoomDto>(_contextMoq);
+            new SavingPipelineBehaviour<GetScheduleSpecificRoomQuery, MeetingRoomDto>(_repositoryMoq);
         var guidRoom = Guid.NewGuid();
         var request = new GetScheduleSpecificRoomQuery(guidRoom);
         var next = new RequestHandlerDelegate<MeetingRoomDto>(() =>
@@ -116,7 +117,7 @@ public class SavingPipelineBehaviourTest
         // Assert
         Assert.That(actual.Id, Is.EqualTo(guidRoom));
         
-        _contextMoq.DidNotReceive().SaveChangesAsync();
+        _repositoryMoq.DidNotReceive().SaveAsync();
     }
 
     [Test, Description("Тест проверки метода с запросом, когда сохранение не выполняется и происходит ошибка.")]
@@ -124,7 +125,7 @@ public class SavingPipelineBehaviourTest
     {
         // Arrange
         IPipelineBehavior<GetScheduleSpecificRoomQuery, MeetingRoomDto> _pipelineBehavior =
-            new SavingPipelineBehaviour<GetScheduleSpecificRoomQuery, MeetingRoomDto>(_contextMoq);
+            new SavingPipelineBehaviour<GetScheduleSpecificRoomQuery, MeetingRoomDto>(_repositoryMoq);
         var guidRoom = Guid.NewGuid();
         var request = new GetScheduleSpecificRoomQuery(guidRoom);
         var next = new RequestHandlerDelegate<MeetingRoomDto>(() =>
@@ -150,7 +151,7 @@ public class SavingPipelineBehaviourTest
         // Assert
         Assert.That(exceptionActual.Message, Is.EqualTo("Вызвана ошибка метода."));
 
-        _contextMoq.DidNotReceive().SaveChangesAsync();
+        _repositoryMoq.DidNotReceive().SaveAsync();
     }
 
     [Test, Description("Тест проверки метода с ошибкой.")]
@@ -188,7 +189,7 @@ public class SavingPipelineBehaviourTest
         // Assert
         Assert.That(exceptionActual.Message, Is.EqualTo("Вызвана ошибка метода."));
         
-        _contextMoq.DidNotReceive().SaveChangesAsync();
+        _repositoryMoq.DidNotReceive().SaveAsync();
     }
     
     #endregion

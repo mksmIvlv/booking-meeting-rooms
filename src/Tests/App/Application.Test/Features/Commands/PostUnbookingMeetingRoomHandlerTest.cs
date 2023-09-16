@@ -48,7 +48,7 @@ public class PostUnbookingMeetingRoomHandlerTest
         _token = new CancellationToken();
         _repositoryMoq = Substitute.For<IRepository>();
         _publishBusServiceMoq = Substitute.For<IPublishBusService<IMessage>>();
-        _handler = new PostUnbookingMeetingRoomHandler(_repositoryMoq, _publishBusServiceMoq);
+        _handler = new UnbookingMeetingRoomHandler(_repositoryMoq, _publishBusServiceMoq);
     }
     
     [Test, Description("Тест на корректное поведение конструктора.")]

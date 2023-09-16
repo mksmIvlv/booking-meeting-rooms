@@ -46,7 +46,7 @@ public class PostBookingMeetingRoomHandlerTest
         _repositoryMoq = Substitute.For<IRepository>();
         _mapperMoq = Substitute.For<IMapper>();
         _token = new CancellationToken();
-        _handler = new PostBookingMeetingRoomHandler(_repositoryMoq, _mapperMoq);
+        _handler = new BookingMeetingRoomHandler(_repositoryMoq, _mapperMoq);
     }
 
     [Test, Description("Тест на корректное поведение конструктора.")]

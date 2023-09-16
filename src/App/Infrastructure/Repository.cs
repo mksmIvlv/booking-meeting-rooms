@@ -123,5 +123,13 @@ public class Repository : IRepository
         return collectionMeetingRoom;
     }
 
+    /// <summary>
+    /// Сохранение данных
+    /// </summary>
+    public async Task SaveAsync()
+    {
+        await _context.SaveChangesAsync();
+    }
+
     #endregion
 }

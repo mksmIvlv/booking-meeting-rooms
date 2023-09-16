@@ -10,7 +10,7 @@ namespace Application.Mediatr.Features.Queries;
 /// <summary>
 /// Обработчик отправки оповещения
 /// </summary>
-public class PostBookingNotificationHandler: IQueryHandler<PostBookingNotificationQuery, Unit>
+public class BookingNotificationHandler: IQueryHandler<PostBookingNotificationQuery, Unit>
 {
     #region Поле
 
@@ -23,7 +23,7 @@ public class PostBookingNotificationHandler: IQueryHandler<PostBookingNotificati
 
     #region Конструктор
 
-    public PostBookingNotificationHandler(IPublishBusService<IMessage> publishBusService)
+    public BookingNotificationHandler(IPublishBusService<IMessage> publishBusService)
     {
         _publishBusService = publishBusService;
     }

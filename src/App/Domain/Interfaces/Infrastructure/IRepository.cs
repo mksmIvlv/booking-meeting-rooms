@@ -45,4 +45,9 @@ public interface IRepository
     /// <param name="maxTimeOnly">Максимальное время для поиска броней</param>
     /// <returns>Коллекция бронирований</returns>
     public List<BookingMeetingRoom> GetRoomsForNotification(DateOnly currentDateOnly, TimeOnly currentTimeOnly, TimeOnly maxTimeOnly);
+
+    /// <summary>
+    /// Сохранение данных
+    /// </summary>
+    public Task SaveAsync();
 }

@@ -9,7 +9,7 @@ namespace Application.Mediatr.Features.Commands;
 /// <summary>
 /// Обработчик бронирования комнаты
 /// </summary>
-public class PostBookingMeetingRoomHandler: ICommandHandler<PostBookingMeetingRoomCommand, BookingMeetingRoomDto>
+public class BookingMeetingRoomHandler: ICommandHandler<PostBookingMeetingRoomCommand, BookingMeetingRoomDto>
 {
     #region Поля
 
@@ -27,7 +27,7 @@ public class PostBookingMeetingRoomHandler: ICommandHandler<PostBookingMeetingRo
     
     #region Конструктор
 
-    public PostBookingMeetingRoomHandler(IRepository repository, IMapper mapper)
+    public BookingMeetingRoomHandler(IRepository repository, IMapper mapper)
     {
         _repository = repository;
         _mapper = mapper;
