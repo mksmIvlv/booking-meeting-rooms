@@ -5,7 +5,7 @@
 /// </summary>
 public class HttpSettings
 {
-    #region Свойства
+    #region Свойство
 
     /// <summary>
     /// Адрес контроллера

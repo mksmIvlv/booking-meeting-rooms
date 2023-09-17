@@ -3,14 +3,13 @@ using Application.Interfaces;
 using Contracts.Interface;
 using Infrastructure.Interfaces.Connections;
 using Newtonsoft.Json;
-using RabbitMQ.Client;
 
 namespace Application.Services.RabbitMq;
 
 /// <summary>
 /// Сервис для отправки сообщений в шину с помощью RabbitMq
 /// </summary>
-public class RabbitMqService<T>: IPublishBusService<T> where T: IMessage
+public class RabbitMqService<T> : IPublishBusService<T> where T : IMessage
 {
     #region Поле
     

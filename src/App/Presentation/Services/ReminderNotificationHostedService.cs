@@ -7,7 +7,7 @@ namespace Presentation.Services;
 /// <summary>
 /// HostedService для отправки напоминаний о бронировании
 /// </summary>
-public class ReminderNotificationHostedService: BackgroundService
+public class ReminderNotificationHostedService : BackgroundService
 {
     #region Поле
 

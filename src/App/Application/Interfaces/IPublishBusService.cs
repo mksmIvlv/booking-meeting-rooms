@@ -5,7 +5,7 @@ namespace Application.Interfaces;
 /// <summary>
 /// Интерфейс для отправки сообщений в шину
 /// </summary>
-public interface IPublishBusService<T> where T: IMessage
+public interface IPublishBusService<T> where T : IMessage
 {
     /// <summary>
     /// Отправка сообщений в очередь

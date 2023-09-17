@@ -9,7 +9,7 @@ namespace Application.Mediatr.Features.Commands;
 /// <summary>
 /// Обработчик бронирования комнаты
 /// </summary>
-public class BookingMeetingRoomHandler: ICommandHandler<PostBookingMeetingRoomCommand, BookingMeetingRoomDto>
+public class BookingMeetingRoomHandler : ICommandHandler<PostBookingMeetingRoomCommand, BookingMeetingRoomDto>
 {
     #region Поля
 

@@ -9,7 +9,7 @@ namespace Infrastructure.Connections;
 /// <summary>
 /// Подключение к Kafka
 /// </summary>
-public class ConnectionKafka: IConnectionKafka
+public class ConnectionKafka : IConnectionKafka
 {
     #region Поля
 

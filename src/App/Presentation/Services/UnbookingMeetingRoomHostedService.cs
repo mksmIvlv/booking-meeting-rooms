@@ -6,7 +6,7 @@ namespace Presentation.Services;
 /// <summary>
 /// HostedService для разбронирования комнат
 /// </summary>
-public class UnbookingMeetingRoomHostedService: BackgroundService
+public class UnbookingMeetingRoomHostedService : BackgroundService
 {
     #region Поле
 

@@ -9,7 +9,7 @@ namespace Application.Services.RabbitMq;
 /// <summary>
 /// Сервис для отправки сообщений в шину с помощью MassTransit
 /// </summary>
-public class MassTransitRabbitMqService<T>: IPublishBusService<T> where T: IMessage
+public class MassTransitRabbitMqService<T> : IPublishBusService<T> where T : IMessage
 {
     #region Свойства
 

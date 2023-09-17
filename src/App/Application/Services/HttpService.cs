@@ -13,7 +13,7 @@ namespace Application.Services;
 /// <summary>
 /// Сервис для отправки сообщений с помощью Http
 /// </summary>
-public class HttpService<T>: IPublishBusService<T> where T: IMessage
+public class HttpService<T> : IPublishBusService<T> where T : IMessage
 {
     #region Поля
 
@@ -49,10 +49,6 @@ public class HttpService<T>: IPublishBusService<T> where T: IMessage
     {
         await Policy
             .HandleResult<HttpResponseMessage>(message => !message.IsSuccessStatusCode)
-            /*.RetryAsync(5, (exception, retryCount) =>
-            {
-                Log.Fatal($"Сообщение не отправленно. Ошибка {exception}, попытка: {retryCount}.");
-            })*/
             .WaitAndRetryAsync(new[]
             {
                 TimeSpan.FromSeconds(1),

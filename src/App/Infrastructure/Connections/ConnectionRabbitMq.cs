@@ -9,7 +9,7 @@ namespace Infrastructure.Connections;
 /// <summary>
 /// Подключения к шине RabbitMq
 /// </summary>
-public class ConnectionRabbitMq: IConnectionRabbitMq
+public class ConnectionRabbitMq : IConnectionRabbitMq
 {
     #region Свойства
 

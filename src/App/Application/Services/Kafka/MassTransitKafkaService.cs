@@ -4,7 +4,7 @@ using MassTransit;
 
 namespace Application.Services.Kafka;
 
-public class MassTransitKafkaService<T>: IPublishBusService<T> where T: IMessage
+public class MassTransitKafkaService<T> : IPublishBusService<T> where T : IMessage
 {
     #region Поле
 

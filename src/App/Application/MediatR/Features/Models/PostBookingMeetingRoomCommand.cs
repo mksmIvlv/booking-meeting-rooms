@@ -6,7 +6,7 @@ namespace Application.Mediatr.Features.Models;
 /// <summary>
 /// Команда для бронирования комнаты
 /// </summary>
-public class PostBookingMeetingRoomCommand: ICommand<BookingMeetingRoomDto>
+public class PostBookingMeetingRoomCommand : ICommand<BookingMeetingRoomDto>
 {
     #region Свойства
 

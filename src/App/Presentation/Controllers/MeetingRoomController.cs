@@ -1,5 +1,6 @@
 ﻿using Application.Mediatr.Features.Models;
 using Application.Models.Dto;
+using Domain.Interfaces.Infrastructure;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,6 +31,17 @@ public class MeetingRoomController : ControllerBase
     #region Api - Методы
     
     /// <summary>
+    /// Расписание комнаты
+    /// </summary>
+    /// <param name="id">Id комнаты</param>
+    /// <returns>Расписание комнаты</returns>
+    [HttpGet]
+    public async Task<MeetingRoomDto> ScheduleSpecificRoomAsync(Guid id)
+    {
+        return await _mediator.Send(new GetScheduleSpecificRoomQuery(id));
+    }
+    
+    /// <summary>
     /// Бронирование комнаты
     /// </summary>
     /// <param name="id">Id комнаты</param>
@@ -47,17 +59,20 @@ public class MeetingRoomController : ControllerBase
 
         return bookingMeetingRoomDto;
     }
-    
+
     /// <summary>
-    /// Расписание комнаты
+    /// Добавление нового предмета
     /// </summary>
     /// <param name="id">Id комнаты</param>
-    /// <returns>Расписание комнаты</returns>
-    [HttpGet]
-    public async Task<MeetingRoomDto> ScheduleSpecificRoomAsync(Guid id)
+    /// <param name="name">Название предмета</param>
+    /// <param name="description">Описание предмета</param>
+    /// <param name="price">Цена предмета</param>
+    /// <returns>Информауию о комнате</returns>
+    [HttpPost]
+    public async Task<MeetingRoomDto> AddItemAsync(Guid id, string name, string? description, decimal? price)
     {
-        return await _mediator.Send(new GetScheduleSpecificRoomQuery(id));
+        return await _mediator.Send(new PostAddNewItemCommand(id, name, description, price));
     }
-
+    
     #endregion
 }

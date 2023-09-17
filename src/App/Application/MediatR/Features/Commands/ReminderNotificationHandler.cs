@@ -11,7 +11,7 @@ namespace Application.Mediatr.Features.Commands;
 /// <summary>
 /// Обработчик отправки напоминаний о забронированной комнаты
 /// </summary>
-public class ReminderNotificationHandler: ICommandHandler<GetReminderNotificationCommand, Unit>
+public class ReminderNotificationHandler : ICommandHandler<GetReminderNotificationCommand, Unit>
 {
     #region Поля
 

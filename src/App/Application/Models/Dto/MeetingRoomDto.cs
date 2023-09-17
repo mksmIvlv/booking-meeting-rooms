@@ -27,5 +27,10 @@ public class MeetingRoomDto
     /// </summary>
     public ICollection<BookingMeetingRoomDto> BookingMeetingRoomsDto { get; set; }
     
+    /// <summary>
+    /// Коллекция предметов в команте
+    /// </summary>
+    public ICollection<ItemInMeetingRoomDto> ItemInMeetingRoomsDto { get; set; }
+    
     #endregion
 }

@@ -11,7 +11,7 @@ namespace Infrastructure.Connections;
 /// <summary>
 /// Подключения к Radis
 /// </summary>
-public class ConnectionRedis: IConnectionRedis
+public class ConnectionRedis : IConnectionRedis
 {
     #region Свойства
 

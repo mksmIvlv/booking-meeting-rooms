@@ -8,6 +8,8 @@ namespace Infrastructure.Interfaces.Connections;
 /// </summary>
 public interface IConnectionRabbitMq
 {
+    #region Свойства
+
     /// <summary>
     /// Канал к которому было создано подключение
     /// </summary>
@@ -17,4 +19,6 @@ public interface IConnectionRabbitMq
     /// Настройки Rabbit
     /// </summary>
     public RabbitMqSettings Settings { get; }
+
+    #endregion
 }

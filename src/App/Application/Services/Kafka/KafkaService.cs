@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace Application.Services.Kafka;
 
-public class KafkaService<T>: IPublishBusService<T> where T: IMessage
+public class KafkaService<T> : IPublishBusService<T> where T : IMessage
 {
     #region Поле
 

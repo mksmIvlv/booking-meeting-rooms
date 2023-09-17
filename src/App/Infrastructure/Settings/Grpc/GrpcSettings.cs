@@ -5,7 +5,7 @@
 /// </summary>
 public class GrpcSettings
 {
-    #region Свойства
+    #region Свойство
 
     /// <summary>
     /// Адрес сервера

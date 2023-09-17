@@ -10,7 +10,7 @@ namespace Application.Mediatr.Features.Queries;
 /// <summary>
 /// Обработчик отправки оповещения
 /// </summary>
-public class BookingNotificationHandler: IQueryHandler<PostBookingNotificationQuery, Unit>
+public class BookingNotificationHandler : IQueryHandler<PostBookingNotificationQuery, Unit>
 {
     #region Поле
 

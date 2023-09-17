@@ -11,7 +11,7 @@ namespace Application.Mediatr.Features.Commands;
 /// <summary>
 /// Обработчик разбронирования комнат
 /// </summary>
-public class UnbookingMeetingRoomHandler: ICommandHandler<PostUnbookingMeetingRoomCommand, Unit>
+public class UnbookingMeetingRoomHandler : ICommandHandler<PostUnbookingMeetingRoomCommand, Unit>
 {
     #region Поле
 

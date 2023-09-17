@@ -14,7 +14,7 @@ public class SavingPipelineBehaviour<TIn, TOut> : IPipelineBehavior<TIn, TOut> w
     #region Поле
 
     /// <summary>
-    /// Контекст
+    /// Репозиторий
     /// </summary>
     private readonly IRepository _repository;
 

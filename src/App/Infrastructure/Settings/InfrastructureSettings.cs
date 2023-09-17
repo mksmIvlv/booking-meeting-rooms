@@ -10,7 +10,7 @@ namespace Infrastructure.Settings;
 /// <summary>
 /// Настройки инфраструктурного слоя
 /// </summary>
-public class InfrastructureSettings: IOptions<InfrastructureSettings>
+public class InfrastructureSettings : IOptions<InfrastructureSettings>
 {
     #region Свойства
 

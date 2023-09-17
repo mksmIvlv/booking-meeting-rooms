@@ -7,7 +7,6 @@ using Application.Services.RabbitMq;
 using Contracts.Interface;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using Polly;
 
 
 namespace Application.Extensions;
@@ -37,8 +36,7 @@ public static class ServiceCollectionExtensions
         //services.AddScoped<IPublishBusService<IMessage>, HttpService<IMessage>>();
 
         // AutoMapper
-        services.AddAutoMapper(typeof(MeetingRoomProfileMapping));
-        services.AddAutoMapper(typeof(BookingMeetingRoomProfileMapping));
+        services.AddAutoMapper(typeof(ServiceCollectionExtensions).Assembly);
 
         // MediatR
         services.AddMediatR(typeof(ServiceCollectionExtensions).Assembly);

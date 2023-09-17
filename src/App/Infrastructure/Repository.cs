@@ -124,6 +124,27 @@ public class Repository : IRepository
     }
 
     /// <summary>
+    /// Добавление нового предмета в команту
+    /// </summary>
+    /// <param name="idRoom">Id команты</param>
+    /// <param name="item">Предмет</param>
+    /// <param name="itemPrice">Цена предмета</param>
+    /// <returns>Информацию о комнате</returns>
+    public async Task<MeetingRoom> AddNewItemAsync(Guid idRoom, Item item, decimal? itemPrice)
+    {
+        var meetingRoom = await _context.Set<MeetingRoom>()
+                              .Include(e => e.BookingMeetingRooms)
+                              .Include(e=> e.ItemsInMeetingRooms)
+                                .ThenInclude(e=> e.Item)
+                              .FirstOrDefaultAsync(e => e.Id == idRoom)
+                          ?? throw new Exception("комнаты с таким Id нет.");
+        
+        meetingRoom.AddItem(item, itemPrice);
+
+        return meetingRoom;
+    }
+
+    /// <summary>
     /// Сохранение данных
     /// </summary>
     public async Task SaveAsync()

@@ -8,7 +8,7 @@ namespace Application.Services;
 /// <summary>
 /// Сервис для отправки сообщений с помощью gRPC
 /// </summary>
-public class GrpcService<T>: IPublishBusService<T> where T: IMessage
+public class GrpcService<T> : IPublishBusService<T> where T : IMessage
 {
     #region Поле
 

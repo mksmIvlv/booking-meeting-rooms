@@ -7,12 +7,12 @@ namespace Application.AutoMapper.Mapping;
 /// <summary>
 /// Настройка профиля маппинга для BookingMeetingRoom
 /// </summary>
-public class BookingMeetingRoomProfileMapping: Profile
+public class BookingMeetingRoomProfile: Profile
 {
     /// <summary>
     /// Маппинг
     /// </summary>
-    public BookingMeetingRoomProfileMapping()
+    public BookingMeetingRoomProfile()
     {
         CreateMap<BookingMeetingRoom, BookingMeetingRoomDto>()
             .ForMember(dto => dto.DateMeeting,

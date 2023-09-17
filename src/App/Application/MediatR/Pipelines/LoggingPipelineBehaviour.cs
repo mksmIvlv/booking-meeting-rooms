@@ -15,7 +15,7 @@ public class LoggingPipelineBehaviour<TIn, TOut> : IPipelineBehavior<TIn, TOut> 
     /// <summary>
     /// Логгер
     /// </summary>
-    private ILogger<LoggingPipelineBehaviour<TIn, TOut>> _logger;
+    private readonly ILogger<LoggingPipelineBehaviour<TIn, TOut>> _logger;
 
     #endregion
 

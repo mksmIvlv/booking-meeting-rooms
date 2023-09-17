@@ -328,6 +328,12 @@ public class RepositoryTest
         Assert.That(actual.Count, Is.EqualTo(0));
     }
 
+    [Test, Description("Тест добавления нового предмета в комнату.")]
+    public void AddNewItemAsyncTest()
+    {
+        //TODO написать тесты
+    }
+
     [Test, Description("Тест сохранения данных в бд.")]
     public void SaveAsyncTest()
     {

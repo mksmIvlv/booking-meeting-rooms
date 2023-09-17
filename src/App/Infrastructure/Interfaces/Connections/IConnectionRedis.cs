@@ -8,6 +8,8 @@ namespace Infrastructure.Interfaces.Connections;
 /// </summary>
 public interface IConnectionRedis
 {
+    #region Свойства
+
     /// <summary>
     /// Фабрика к которой было созданно подключение
     /// </summary>
@@ -17,4 +19,6 @@ public interface IConnectionRedis
     /// Настройки Redis
     /// </summary>
     public RedisSettings Settings { get; }
+
+    #endregion
 }
