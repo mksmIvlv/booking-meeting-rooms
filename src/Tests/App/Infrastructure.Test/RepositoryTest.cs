@@ -331,7 +331,39 @@ public class RepositoryTest
     [Test, Description("Тест добавления нового предмета в комнату.")]
     public void AddNewItemAsyncTest()
     {
-        //TODO написать тесты
+        // Arrange
+        // Создание комнаты
+        var meetingRoom = new MeetingRoom("Тестовая комната № 1", "Описание тестовой комнаты № 1");
+        var item = new Item("Тестовый предмет", "Описание предмета");
+        // Добавление комнаты в временную бд
+        _context.AddRange(meetingRoom);
+        _context.SaveChanges();
+        
+        // Act
+        var actual = _repository.AddNewItemAsync(meetingRoom.Id, item, 100)
+            .GetAwaiter()
+            .GetResult();
+        
+        // Assert
+        Assert.That(actual.ItemsInMeetingRooms.Count, Is.EqualTo(1));
+        Assert.That(actual.ItemsInMeetingRooms[0].Item.Id, Is.EqualTo(item.Id));
+        Assert.That(actual.ItemsInMeetingRooms[0].ItemPrice, Is.EqualTo(100));
+    }
+    
+    [Test, Description("Тест добавления нового предмета в комнату, когда такой комнаты нет в бд.")]
+    public void AddNewItemAsyncExceptionTest()
+    {
+        // Arrange
+        var exception = "комнаты с таким Id нет.";
+        var item = new Item("Тестовый предмет", "Описание предмета");
+        
+        // Act
+        var actualException = Assert.Throws<Exception>(() => _repository.AddNewItemAsync(Guid.NewGuid(), item, 100)
+            .GetAwaiter()
+            .GetResult());
+        
+        // Assert
+        Assert.That(actualException.Message, Is.EqualTo(exception));
     }
 
     [Test, Description("Тест сохранения данных в бд.")]
