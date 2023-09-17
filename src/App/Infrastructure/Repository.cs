@@ -130,7 +130,7 @@ public class Repository : IRepository
     /// <param name="item">Предмет</param>
     /// <param name="itemPrice">Цена предмета</param>
     /// <returns>Информацию о комнате</returns>
-    public async Task<MeetingRoom> AddNewItemAsync(Guid idRoom, Item item, decimal? itemPrice)
+    public async Task<MeetingRoom> AddNewItemAsync(Guid idRoom, Item item, decimal itemPrice)
     {
         var meetingRoom = await _context.Set<MeetingRoom>()
                               .Include(e => e.BookingMeetingRooms)

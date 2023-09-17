@@ -143,7 +143,7 @@ public class MeetingRoom : ModelBase<MeetingRoom>
     /// Добавление предметов в комнату
     /// </summary>
     /// <param name="item">Предмет</param>
-    public void AddItem(Item item, decimal? itemPrice)
+    public void AddItem(Item item, decimal itemPrice)
     {
         ItemsInMeetingRooms.Add(new ItemInMeetingRoom(item, itemPrice));
     }

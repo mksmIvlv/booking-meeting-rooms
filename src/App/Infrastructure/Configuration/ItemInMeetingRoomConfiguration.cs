@@ -18,6 +18,8 @@ public class ItemInMeetingRoomConfiguration : IEntityTypeConfiguration<ItemInMee
     {
         builder.HasKey(q => new { q.IdMeetingRoom, q.IdItem });
         builder.ToTable("ItemInMeetingRoom");
+        builder.Property(q => q.ItemPrice)
+            .IsRequired();
         
         // Связь с MeetingRoom
         builder

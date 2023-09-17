@@ -46,7 +46,14 @@ public interface IRepository
     /// <returns>Коллекция бронирований</returns>
     public List<BookingMeetingRoom> GetRoomsForNotification(DateOnly currentDateOnly, TimeOnly currentTimeOnly, TimeOnly maxTimeOnly);
 
-    public Task<MeetingRoom> AddNewItemAsync(Guid idRoom, Item item, decimal? itemPrice);
+    /// <summary>
+    /// Добавление нового предмета в команту
+    /// </summary>
+    /// <param name="idRoom">Id команты</param>
+    /// <param name="item">Предмет</param>
+    /// <param name="itemPrice">Цена предмета</param>
+    /// <returns>Информацию о комнате</returns>
+    public Task<MeetingRoom> AddNewItemAsync(Guid idRoom, Item item, decimal itemPrice);
     
     /// <summary>
     /// Сохранение данных

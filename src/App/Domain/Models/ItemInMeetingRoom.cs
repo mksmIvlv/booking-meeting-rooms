@@ -30,7 +30,7 @@ public class ItemInMeetingRoom
     /// <summary>
     /// Цена предмета
     /// </summary>
-    public decimal? ItemPrice { get; private set; }
+    public decimal ItemPrice { get; private set; }
     
     #endregion
 
@@ -38,7 +38,7 @@ public class ItemInMeetingRoom
 
     private ItemInMeetingRoom() { }
 
-    public ItemInMeetingRoom(Item item, decimal? itemPrice)
+    public ItemInMeetingRoom(Item item, decimal itemPrice)
     {
         Item = item;
         ItemPrice = itemPrice;

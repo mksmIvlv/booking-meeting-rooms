@@ -13,13 +13,13 @@ public class PostAddNewItemCommand : ICommand<MeetingRoomDto>
     
     public string? Description { get; }
     
-    public decimal? ItemPrice { get; }
+    public decimal ItemPrice { get; }
 
     #endregion
 
     #region Конструктор
 
-    public PostAddNewItemCommand(Guid idRoom, string nameItem, string? description, decimal? itemPrice)
+    public PostAddNewItemCommand(Guid idRoom, string nameItem, string? description, decimal itemPrice)
     {
         IdRoom = idRoom;
         NameItem = nameItem;

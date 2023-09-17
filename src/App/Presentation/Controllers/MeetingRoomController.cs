@@ -69,7 +69,7 @@ public class MeetingRoomController : ControllerBase
     /// <param name="price">Цена предмета</param>
     /// <returns>Информауию о комнате</returns>
     [HttpPost]
-    public async Task<MeetingRoomDto> AddItemAsync(Guid id, string name, string? description, decimal? price)
+    public async Task<MeetingRoomDto> AddItemAsync(Guid id, string name, string? description, decimal price)
     {
         return await _mediator.Send(new PostAddNewItemCommand(id, name, description, price));
     }
