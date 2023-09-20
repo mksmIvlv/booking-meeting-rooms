@@ -12,7 +12,7 @@ using NUnit.Framework;
 namespace Application.Test.Features.Queries;
 
 [TestFixture]
-public class PostBookingNotificationHandlerTest
+public class BookingNotificationHandlerTest
 {
     #region Поля
     

@@ -4,12 +4,12 @@
           gRPC(взаимодействие с другим приложением).
 
       2. Application:
-          MediatR, AutoMapper, RabbitMQ, Kafka, MassTransit
-          Http(взаимодействие с другим приложением),
+          MediatR, AutoMapper, Serilog, RabbitMQ, Kafka,
+          MassTransit, Http(взаимодействие с другим приложением),
           Polly/Microsoft.Polly.
 
       3. Presentation:
-          Serilog, Swagger, HealthCheck/HealthCheckUI, Jaeger 
+          Swagger, HealthCheck/HealthCheckUI, Jaeger 
           OpenTelemetry/Prometheus, Elastic/Kibana.
     
       4. Tests:

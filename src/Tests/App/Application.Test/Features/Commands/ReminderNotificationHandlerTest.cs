@@ -14,15 +14,15 @@ using NUnit.Framework;
 namespace Application.Test.Features.Commands;
 
 [TestFixture]
-public class PostUnbookingMeetingRoomHandlerTest
+public class ReminderNotificationHandlerTest
 {
     #region Поля
-
+    
     /// <summary>
     /// Доступ к тестируемому сервису
     /// </summary>
-    private ICommandHandler<PostUnbookingMeetingRoomCommand, Unit> _handler;
-    
+    private ICommandHandler<GetReminderNotificationCommand, Unit> _handler;
+
     /// <summary>
     /// Доступ к репозиторию
     /// </summary>
@@ -32,7 +32,7 @@ public class PostUnbookingMeetingRoomHandlerTest
     /// Доступ к сервису для отправки оповещений
     /// </summary>
     private IPublishBusService<IMessage> _publishBusServiceMoq;
-    
+
     /// <summary>
     /// Токен
     /// </summary>
@@ -43,12 +43,12 @@ public class PostUnbookingMeetingRoomHandlerTest
     #region Методы
     
     [SetUp]
-    public void PostUnbookingMeetingRoomHandlerTestSetUp()
+    public void PostReminderNotificationHandlerTestSetUp()
     {
         _token = new CancellationToken();
         _repositoryMoq = Substitute.For<IRepository>();
         _publishBusServiceMoq = Substitute.For<IPublishBusService<IMessage>>();
-        _handler = new UnbookingMeetingRoomHandler(_repositoryMoq, _publishBusServiceMoq);
+        _handler = new ReminderNotificationHandler(_publishBusServiceMoq, _repositoryMoq);
     }
     
     [Test, Description("Тест на корректное поведение конструктора.")]
@@ -85,11 +85,10 @@ public class PostUnbookingMeetingRoomHandlerTest
         };
         
         // Мок
-        _repositoryMoq.UnbookingMeetingRoomAsync(dateMeeting, Arg.Any<TimeOnly>());
-        _repositoryMoq.UnbookingNotificationAsync(dateMeeting, Arg.Any<TimeOnly>())
+        _repositoryMoq.GetRoomsForNotification(dateMeeting, Arg.Any<TimeOnly>(), Arg.Any<TimeOnly>())
             .Returns(collectionBookingMeetingRoom);
         // Команда
-        var command = new PostUnbookingMeetingRoomCommand();
+        var command = new GetReminderNotificationCommand();
         
         //Act
         _handler.Handle(command, _token)
@@ -98,9 +97,7 @@ public class PostUnbookingMeetingRoomHandlerTest
         
         // Assert
         _repositoryMoq.Received(1)
-            .UnbookingMeetingRoomAsync(Arg.Any<DateOnly>(), Arg.Any<TimeOnly>());
-        _repositoryMoq.Received(1)
-            .UnbookingNotificationAsync(Arg.Any<DateOnly>(), Arg.Any<TimeOnly>());
+            .GetRoomsForNotification(Arg.Any<DateOnly>(), Arg.Any<TimeOnly>(), Arg.Any<TimeOnly>());
         _publishBusServiceMoq.Received(5)
             .SendMessageAsync(Arg.Any<MessageNotification>());
     }

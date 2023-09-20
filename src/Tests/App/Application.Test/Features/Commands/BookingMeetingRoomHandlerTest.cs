@@ -12,7 +12,7 @@ using NUnit.Framework;
 namespace Application.Test.Features.Commands;
 
 [TestFixture]
-public class PostBookingMeetingRoomHandlerTest
+public class BookingMeetingRoomHandlerTest
 {
     #region Поля
 
